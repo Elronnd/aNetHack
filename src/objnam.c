@@ -526,7 +526,7 @@ register struct obj *obj;
 {
     if (!obj->dknown)
 	return FALSE;
-    else if (obj->otyp == FAKE_AMULET_OF_YENDOR && !obj->known)
+    else if ((obj->otyp == FAKE_AMULET_OF_YENDOR || obj->otyp == EXPENSIVE_PLATINUM_SPELLBOUND_) && !obj->known)
 	return TRUE;		/* lie */
     else
 	return (boolean)(objects[obj->otyp].oc_unique &&
