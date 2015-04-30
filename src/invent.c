@@ -1949,7 +1949,7 @@ struct obj *obj;
 	}
 	/* V: invoke, rub, or break */
 	any.a_void = (genericptr_t)doinvoke;
-	if ((obj->otyp == FAKE_AMULET_OF_YENDOR && !obj->known) ||
+	if (((obj->otyp == FAKE_AMULET_OF_YENDOR && !obj->known) || (obj->otyp == EXPENSIVE_PLATINUM_SPELLBOUND_ && !obj->known)) ||
 			obj->oartifact || objects[obj->otyp].oc_unique ||
 			obj->otyp == MIRROR) /* wtf NetHack devteam? */
 		add_menu(win, NO_GLYPH, &any, 'V', 0, ATR_NONE,
