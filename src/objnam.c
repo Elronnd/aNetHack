@@ -634,6 +634,7 @@ boolean with_price;
 			&& obj->otyp != SCR_MAIL
 #endif
 			&& obj->otyp != FAKE_AMULET_OF_YENDOR
+			&& obj->otyp != EXPENSIVE_PLATINUM_SPELLBOUND_
 			&& obj->otyp != AMULET_OF_YENDOR
 			&& !Role_if(PM_PRIEST))
 		Strcat(prefix, "uncursed ");
