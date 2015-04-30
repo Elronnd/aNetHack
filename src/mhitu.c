@@ -1717,6 +1717,15 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			exercise(A_STR, FALSE);
 		    }
 		    break;
+		case AD_RUST:
+		    if (u.umonnum == PM_IRON_GOLEM) {
+			You("rust!");
+			rehumanize();
+		    } else {
+			pline("Water splatters all over you!");
+			water_damage(invent, FALSE, FALSE);
+		    }
+		    break;
 		case AD_PHYS:
 		    if (mtmp->data == &mons[PM_FOG_CLOUD]) {
 			You("are laden with moisture and %s",

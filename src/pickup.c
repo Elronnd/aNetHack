@@ -1896,10 +1896,13 @@ register struct obj *obj;
 	} else if (obj->otyp == AMULET_OF_YENDOR ||
 		   obj->otyp == CANDELABRUM_OF_INVOCATION ||
 		   obj->otyp == BELL_OF_OPENING ||
+//		   obj->otyp == PLAT_OF_YENDOR ||
+		   obj->otyp == EXPENSIVE_PLATINUM_SPELLBOUND_ ||
 		   obj->otyp == SPE_BOOK_OF_THE_DEAD) {
 	/* Prohibit Amulets in containers; if you allow it, monsters can't
 	 * steal them.  It also becomes a pain to check to see if someone
 	 * has the Amulet.  Ditto for the Candelabrum, the Bell and the Book.
+	 * Add the fake platinum amulet of yendor just to be evil.
 	 */
 	    pline("%s cannot be confined in such trappings.", The(xname(obj)));
 	    return 0;

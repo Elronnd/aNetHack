@@ -331,6 +331,17 @@ mattackm(magr, mdef)
 		break;
 
 	    case AT_ENGL:
+/*		if(mattk->attyp == AT_ENGL) {
+		    if (u.umonnum == PM_IRON_GOLEM) {                                                                                                                                                                                           
+			You("rust!");                                                                                                                                                                                                           
+                        rehumanize();                                                                                                                                                                                                           
+                    } else {                                                                                                                                                                                                                    
+                        pline("Water splatters all over you!");                                                                                                                                                                                 
+                        water_damage(invent, FALSE, FALSE);                                                                                                                                                                                     
+                    }                                                                                                                                                                                                                           
+		    break;
+		} else {
+*/
 #ifdef STEED
 		if (u.usteed && (mdef == u.usteed)) {
 		    strike = 0;
@@ -741,6 +752,16 @@ mdamagem(magr, mdef, mattk)
 		/* only potions damage resistant players in destroy_item */
 		tmp += destroy_mitem(mdef, POTION_CLASS, AD_FIRE);
 		break;
+/*	    case AD_RUST:
+		if (u.umonnum == PM_IRON_GOLEM) {
+		    pline("Water splatters all over the iron golem!");
+		    rehumanize();
+		} else {
+		    pline("Water splatters all over the %s!", Monnam(mdef));
+		    water_damage(invent, FALSE, FALSE);
+		    }
+		break;
+*/
 	    case AD_COLD:
 		if (cancelled) {
 		    tmp = 0;

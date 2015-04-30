@@ -275,6 +275,7 @@ boolean ignore_oquan;
 		if (!obj->dknown)
 			Strcpy(buf, "amulet");
 		else if (typ == AMULET_OF_YENDOR ||
+			 typ == EXPENSIVE_PLATINUM_SPELLBOUND_ ||
 			 typ == FAKE_AMULET_OF_YENDOR)
 			/* each must be identified individually */
 			Strcpy(buf, obj->known ? actualn : dn);
@@ -1042,7 +1043,12 @@ const char *str;
 		      !strcmp(&str[l - 31], "Platinum Yendorian Express Card"))
 		    insert_the = TRUE;
 	    }
+/*		else if (!named && (l = strlen(str)) >= 16 &&
+		      !strcmp(&str[l - 17], "Amulet of Yendor"))
+		    insert_the = TRUE;
+*/
 	}
+//	}
 	if (insert_the)
 	    Strcpy(buf, "the ");
 	else
