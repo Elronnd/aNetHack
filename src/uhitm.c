@@ -1848,11 +1848,11 @@ register struct attack *mattk;
 			return(2);
             case AD_RUST:
                 if (u.umonnum == PM_IRON_GOLEM) {
-                    pline("The iron golem rusts!");
-                    rehumanize();
+		      pline("It falls to pieces!");
+		      xkilled(mdef,0);
                 } else {
                     pline("Water splatters all over the %s", Monnam(mdef));
-                    water_damage(invent, FALSE, FALSE);
+		    hurtmarmor(mdef, AD_RUST);
                     }
                 break;
 		    case AD_PHYS:
