@@ -925,7 +925,7 @@ register const char *let,*word;
 		|| (!strcmp(word, "eat") && !is_edible(otmp))
 		|| (!strcmp(word, "sacrifice") &&
 		    (otyp != CORPSE &&
-		     otyp != AMULET_OF_YENDOR && otyp != FAKE_AMULET_OF_YENDOR && otyp != EXPENSIVE_PLATINUM_SPELLBOUND_))
+		     otyp != AMULET_OF_YENDOR && otyp != FAKE_AMULET_OF_YENDOR))
 		|| (!strcmp(word, "write with") &&
 		    (otmp->oclass == TOOL_CLASS &&
 		     otyp != MAGIC_MARKER && otyp != TOWEL))
