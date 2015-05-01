@@ -1846,14 +1846,14 @@ register struct attack *mattk;
 			}
 			end_engulf();
 			return(2);
-            case AD_RUST:                                                                                                                                                                                                                       
-                if (u.umonnum == PM_IRON_GOLEM) {                                                                                                                                                                                               
+            case AD_RUST:
+                if (u.umonnum == PM_IRON_GOLEM) {
                     pline("The iron golem rusts!");
                     rehumanize();
-                } else {                                                                                                                                                                                                                        
-                    pline("Water splatters all over the %s", Monnam(mdef));                                                                                                                                                                                     
-                    water_damage(invent, FALSE, FALSE);                                                                                                                                                                                         
-                    }                                                                                                                                                                                                                           
+                } else {
+                    pline("Water splatters all over the %s", Monnam(mdef));
+                    water_damage(invent, FALSE, FALSE);
+                    }
                 break;
 		    case AD_PHYS:
 			if (youmonst.data == &mons[PM_FOG_CLOUD]) {
