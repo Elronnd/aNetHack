@@ -153,10 +153,10 @@
 
 #ifndef WIZARD		/* allow for compile-time or Makefile changes */
 # ifndef KR1ED
-#  define WIZARD  "nethack" /* the person allowed to use the -D option */
+#  define WIZARD  "wizard" /* the person allowed to use the -D option */
 # else
 #  define WIZARD
-#  define WIZARD_NAME "nethack"
+#  define WIZARD_NAME "wizard"
 # endif
 #endif
 
@@ -452,7 +452,7 @@ typedef long glyph_t;
 
 /* Write out player's current location to this file.
    Can be left undefined, which will disable the feature. */
-#define WHEREIS_FILE "whereis/%n.whereis"
+//#define WHEREIS_FILE "whereis/%n.whereis"
 
 #define USER_DUNGEONCOLOR
 
