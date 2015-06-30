@@ -1,14 +1,14 @@
-GAME = nethack
-GAMEUID = nethack
-GAMEGID = nethack
+GAME = anethack
+GAMEUID =
+GAMEGID =
 
 INSTALL = install
 BISON = bison
 FLEX = flex
 CHOWN = chown
 
-PREFIX = /opt/nethack
-GAMEDIR = $(PREFIX)/nh343
+PREFIX = /usr/local
+GAMEDIR = $(PREFIX)/anethack
 VARDIR = $(GAMEDIR)
 
 INSTALL_PROGRAM = $(INSTALL)
@@ -30,7 +30,7 @@ TOUCH_VAR = touch $(1) && $(CHOWN) $(GAMEUID):$(GAMEGID) $(1)
 
 .PHONY: install
 install: all
-	mkdir -p $(GAMEDIR)
+	mkdir -p $(GAMEDIR)/dumplog
 	$(INSTALL_GAME) src/$(GAME) $(GAMEDIR)
 	$(INSTALL_PROGRAM) util/recover $(GAMEDIR)
 	$(INSTALL_DATA) dat/nhdat dat/license $(GAMEDIR)

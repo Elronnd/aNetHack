@@ -388,7 +388,7 @@ typedef long glyph_t;
 #define AUTOPICKUP_EXCEPTIONS  /* exceptions to autopickup */
 
 #define DUMP_LOG        /* Dump game end information to a file */
-#define DUMP_FN "/dgldir/userdata/%n/nethack/dumplog/%t"      /* Fixed dumpfile name, if you want
+#define DUMP_FN "/usr/local/anethack/dumplog/%t"      /* Fixed dumpfile name, if you want
                                    * to prevent definition by users */
 #define DUMPMSGS 20     /* Number of latest messages in the dump file  */
 
