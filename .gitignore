@@ -1,4 +1,5 @@
-src/nethack
+src/anethack
+src/paniclog
 util/recover
 util/makedefs
 util/dlb
