@@ -110,6 +110,7 @@ STATIC_PTR int NDECL(doprev_message);
 STATIC_PTR int NDECL(timed_occupation);
 STATIC_PTR int NDECL(doextcmd);
 STATIC_PTR int NDECL(domonability);
+STATIC_PTR int NDECL(dooverview_or_wiz_where);
 STATIC_PTR int NDECL(dotravel);
 # ifdef WIZARD
 STATIC_PTR int NDECL(wiz_mk_mapglyphdump);
@@ -532,6 +533,17 @@ enter_explore_mode()
 			pline("Resuming normal game.");
 		}
 	}
+	return 0;
+}
+
+STATIC_PTR int
+dooverview_or_wiz_where()
+{
+#ifdef WIZARD
+	if (wizard) return wiz_where();
+	else
+#endif
+	dooverview();
 	return 0;
 }
 
@@ -1985,6 +1997,7 @@ struct ext_func_tab extcmdlist[] = {
 	{"explore_mode", "enter explore (discovery) mode (only if defined)", enter_explore_mode, IFBURIED},
 
 	{"adjust", "adjust inventory letters", doorganize, IFBURIED, AUTOCOMPLETE},
+	{"annotate", "name current level", donamelevel, IFBURIED, AUTOCOMPLETE},
 	{"chat", "talk to someone", dotalk, IFBURIED, AUTOCOMPLETE},	/* converse? */
 	{"conduct", "list which challenges you have adhered to", doconduct, IFBURIED, AUTOCOMPLETE},
 	{"dip", "dip an object into something", dodip, !IFBURIED, AUTOCOMPLETE},
@@ -1997,6 +2010,7 @@ struct ext_func_tab extcmdlist[] = {
 	{"name", "name an item or type of object", do_naming_ddocall, IFBURIED, AUTOCOMPLETE},
 	{"nameold", "name an item or type of object (vanilla)", ddocall, IFBURIED},
 	{"offer", "offer a sacrifice to the gods", dosacrifice, !IFBURIED, AUTOCOMPLETE},
+	{"overview", "show an overview of the dungeon", dooverview, IFBURIED, AUTOCOMPLETE},
 	{"pray", "pray to the gods for help", dopray, IFBURIED, AUTOCOMPLETE},
 	{"quit", "exit without saving current game", done2, IFBURIED, AUTOCOMPLETE},
 #ifdef STEED
@@ -2114,7 +2128,7 @@ init_bind_list(void)
 		bind_key(C('f'), "map" );
 		bind_key(C('g'), "genesis" );
 		bind_key(C('i'), "identify" );
-		bind_key(C('o'), "where" );
+//		bind_key(C('o'), "where" );
 		bind_key(C('v'), "levelport" );
 		bind_key(C('w'), "wish" );
 	}

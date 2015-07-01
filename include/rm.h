@@ -338,6 +338,7 @@ extern uchar showsymcolors[MAXPCHARS];
 struct rm {
 	int glyph;		/* what the hero thinks is there */
 	schar typ;		/* what is really there */
+	Bitfield(styp, 6);	/* last seen/touched dungeon typ */
 	uchar seenv;		/* seen vector */
 	Bitfield(flags,5);	/* extra information for typ */
 	Bitfield(horizontal,1); /* wall/door/etc is horiz. (more typ info) */

@@ -655,6 +655,7 @@ static const char *build_opts[] = {
 #ifdef REALTIME_ON_BOTL
                 "elapsed time on status line",
 #endif
+		"dungeon map overview patch",
 #ifdef ELBERETH
 		"Elbereth",
 #endif

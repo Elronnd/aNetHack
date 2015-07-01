@@ -7,6 +7,18 @@ util/dgn_comp
 util/lev_comp
 util/tilemap
 
+*.patch
+*.rej
+*.orig
+*/*.rej
+*/*.orig
+*/*/*.rej
+*/*/*.orig
+
+.*.swp
+*/.*.swp
+*/*/.*.swp
+
 */*.o
 */*/*.o
 
