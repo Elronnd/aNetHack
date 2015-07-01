@@ -551,6 +551,12 @@ bot2()
 #else
   Sprintf(nb = eos(nb), " %s", enc_stat[cap]);
 #endif
+  if(sengr_at("Elbereth", u.ux, u.uy))
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+      add_colored_text("Elbereth", newbot2);
+#else
+  	Sprintf(nb = eos(nb), " Elbereth");
+#endif
 #ifdef DUMP_LOG
 }
 STATIC_OVL void
