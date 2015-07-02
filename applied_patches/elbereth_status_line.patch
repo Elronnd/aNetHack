@@ -1,0 +1,11 @@
+--- ../nethack-3.4.3-original/src/botl.c	2003-12-07 18:39:13.000000000 -0500
++++ src/botl.c	2013-01-19 23:50:45.649640210 -0500
+@@ -292,6 +292,8 @@
+ 	if(Slimed)         Sprintf(nb = eos(nb), " Slime");
+ 	if(cap > UNENCUMBERED)
+ 		Sprintf(nb = eos(nb), " %s", enc_stat[cap]);
++	if(sengr_at("Elbereth", u.ux, u.uy))
++		Sprintf(nb = eos(nb), " Elbereth");
+ 	curs(WIN_STATUS, 1, 1);
+ 	putstr(WIN_STATUS, 0, newbot2);
+ }
