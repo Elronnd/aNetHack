@@ -14,7 +14,6 @@ STATIC_DCL void NDECL(dosinkfall);
 #endif
 STATIC_DCL boolean FDECL(findtravelpath, (BOOLEAN_P));
 STATIC_DCL boolean FDECL(monstinroom, (struct permonst *,int));
-
 STATIC_DCL void FDECL(move_update, (BOOLEAN_P));
 
 #define IS_SHOP(x)	(rooms[x].rtype >= SHOPBASE)
@@ -647,6 +646,9 @@ int mode;
 	}
 	if (invent && (inv_weight() + weight_cap() > 600)) {
 	    if (mode == DO_MOVE)
+#ifdef CONVICT
+        if (!Passes_walls)
+#endif /* CONVICT */
 		You("are carrying too much to get through.");
 	    return FALSE;
 	}
