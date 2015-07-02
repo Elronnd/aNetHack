@@ -1043,7 +1043,14 @@ const char *str;
 		else if (!named && (l = strlen(str)) >= 31 &&
 		      !strcmp(&str[l - 31], "Platinum Yendorian Express Card"))
 		    insert_the = TRUE;
-	    }
+		/* another stupid case for "the Arkenstone" */
+		else if(!strstri(str, " named ") && 
+		      (l = strlen(str)) >= 10 && 
+		    !strcmp(&str[l - 10], "Arkenstone")) 
+		insert_the = TRUE;
+}
+
+
 /*		else if (!named && (l = strlen(str)) >= 16 &&
 		      !strcmp(&str[l - 17], "Amulet of Yendor"))
 		    insert_the = TRUE;

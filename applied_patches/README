@@ -4,5 +4,7 @@ This directory contains a list all of the original patches applied to this varia
 
 * The Elbereth status line patch.  If you are currently standing on an Elbereth square, show "Elbereth" in the status line.  Works with statuscolors, so you can do something like "STATUSCOLOR=elbereth:green" in your config.
 
+* The arkenstone patch.  Adds an arkenstone with various properties.  Dwarf lords and kings are occasionally carrying it.  For more information, see README.arkenstone.
+
 
 Also see README.NAO in the top directory.

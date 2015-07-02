@@ -477,7 +477,16 @@ long wp_mask;
 	    if (on) EReflecting |= wp_mask;
 	    else EReflecting &= ~wp_mask;
 	}
-
+#ifdef ARKENSTONE
+        if (spfx & SPFX_CONFL) {
+            if (on) EConflict |= wp_mask;
+            else EConflict &= ~wp_mask;
+        }
+        if (spfx & SPFX_AGGRM) {
+            if (on) EAggravate_monster |= wp_mask;
+            else EAggravate_monster &= ~wp_mask;
+        }
+#endif /* ARKENSTONE */
 	if(wp_mask == W_ART && !on && oart->inv_prop) {
 	    /* might have to turn off invoked power too */
 	    if (oart->inv_prop <= LAST_PROP &&

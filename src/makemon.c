@@ -318,6 +318,15 @@ register struct monst *mtmp;
 		    } else {
 			(void)mongets(mtmp, !rn2(3) ? PICK_AXE : DAGGER);
 		    }
+#ifdef ARKENSTONE
+                    if((mm == PM_DWARF_KING) && !rn2(75) &&
+                        !exist_artifact(DIAMOND, artiname(ART_ARKENSTONE))) {
+                        otmp = mksobj(DIAMOND, FALSE, FALSE);
+                        otmp->quan = 1L;
+                        otmp = oname(otmp, artiname(ART_ARKENSTONE));
+                        (void) mpickobj(mtmp, otmp);
+                    }
+#endif /* ARKENSTONE */
 		}
 		break;
 # ifdef KOPS

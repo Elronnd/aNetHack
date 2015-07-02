@@ -325,6 +325,8 @@ typedef long glyph_t;
 # endif
 #endif
 
+#define ARKENSTONE /* Add "the Arkenstone," an artifact. */
+
 /*
  * Section 4:  THE FUN STUFF!!!
  *

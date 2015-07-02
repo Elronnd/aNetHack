@@ -142,6 +142,11 @@ int
 demon_talk(mtmp)		/* returns 1 if it won't attack. */
 register struct monst *mtmp;
 {
+#ifdef ARKENSTONE
+        struct obj *otmp;
+        char qbuf[QBUFSZ];
+#endif
+
 	long cash, demand, offer;
 
 	if (uwep && uwep->oartifact == ART_EXCALIBUR) {
@@ -171,6 +176,40 @@ register struct monst *mtmp;
 #endif
 	demand = (cash * (rnd(80) + 20 * Athome)) /
 	    (100 * (1 + (sgn(u.ualign.type) == sgn(mtmp->data->maligntyp))));
+
+#ifdef ARKENSTONE
+        /* If you have the Arkenstone, the demon demands 
+         * it instead of gold. */
+        for(otmp = invent; otmp; otmp = otmp->nobj) {
+            if(otmp->oartifact == ART_ARKENSTONE) break;
+        }
+
+        if(otmp) {
+            /* You have the Arkenstone; demand it unless the monster has the
+             * Amulet (same justification as below.)  If it does, then we
+             * will drop into the normal monetary bribe code (which can't
+             * be satisfied.) */
+            
+            if(!mon_has_amulet(mtmp)) {
+                pline("%s demands %s for safe passage.",
+                    Amonnam(mtmp), the(xname(otmp)));
+                Sprintf(qbuf, "Give it to %s?", mhim(mtmp));
+                if(yn(qbuf) == 'y') {
+                    pline("%s vanishes, laughing about cowardly mortals.",
+                          Amonnam(mtmp));
+                    freeinv(otmp);
+                    (void) mpickobj(mtmp, otmp);
+                    mongone(mtmp);
+                    return 1;
+                } else {
+                    pline("%s gets angry...", Amonnam(mtmp));
+                    mtmp->mpeaceful = 0;
+                    set_malign(mtmp);
+                    return 0;
+                }
+            }
+        }
+#endif
 
 	if (!demand) {		/* you have no gold */
 	    mtmp->mpeaceful = 0;
