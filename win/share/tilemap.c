@@ -40,12 +40,6 @@ struct conditionals {
 	{ MON_GLYPH, PM_BABY_SILVER_DRAGON, "baby shimmering dragon" },
 	{ MON_GLYPH, PM_SILVER_DRAGON, "shimmering dragon" },
 	{ MON_GLYPH, PM_JABBERWOCK, "vorpal jabberwock" },
-#ifndef KOPS
-	{ MON_GLYPH, PM_JABBERWOCK, "Keystone Kop" },
-	{ MON_GLYPH, PM_JABBERWOCK, "Kop Sergeant" },
-	{ MON_GLYPH, PM_JABBERWOCK, "Kop Lieutenant" },
-	{ MON_GLYPH, PM_JABBERWOCK, "Kop Kaptain" },
-#endif
 	{ MON_GLYPH, PM_VAMPIRE_LORD, "vampire mage" },
 #ifndef CHARON /* not supported yet */
 	{ MON_GLYPH, PM_CROESUS, "Charon" },

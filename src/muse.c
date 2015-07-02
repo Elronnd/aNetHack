@@ -907,9 +907,7 @@ struct monst *mtmp;
 
 	if(is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
 			|| pm->mlet == S_GHOST
-# ifdef KOPS
 			|| pm->mlet == S_KOP
-# endif
 		) return 0;
     try_again:
 	switch (rn2(8 + (difficulty > 3) + (difficulty > 6) +
@@ -1523,9 +1521,7 @@ struct monst *mtmp;
 
 	if(is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
 			|| pm->mlet == S_GHOST
-# ifdef KOPS
 			|| pm->mlet == S_KOP
-# endif
 		) return 0;
 	if (difficulty > 7 && !rn2(35)) return WAN_DEATH;
 	switch (rn2(9 - (difficulty < 4) + 4 * (difficulty > 6))) {
@@ -1914,9 +1910,7 @@ struct monst *mtmp;
 
 	if(is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
 			|| pm->mlet == S_GHOST
-# ifdef KOPS
 			|| pm->mlet == S_KOP
-# endif
 		) return 0;
 	/* Unlike other rnd_item functions, we only allow _weak_ monsters
 	 * to have this item; after all, the item will be used to strengthen

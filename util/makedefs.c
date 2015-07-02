@@ -448,9 +448,8 @@ make_version()
 			| (1L <<  2)
 #endif
 		/* monsters (5..9) */
-#ifdef KOPS
+/* For KOPS, taking out an #ifdef --Elronnd */
 			| (1L <<  6)
-#endif
 #ifdef MAIL
 			| (1L <<  7)
 #endif
@@ -670,9 +669,6 @@ static const char *build_opts[] = {
 #endif
 #ifdef INSURANCE
 		"insurance files for recovering from crashes",
-#endif
-#ifdef KOPS
-		"Keystone Kops",
 #endif
 #ifdef HOLD_LOCKFILE_OPEN
 		"exclusive lock on level 0 file",

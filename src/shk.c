@@ -13,13 +13,11 @@
 #define PAY_SKIP  (-1)
 #define PAY_BROKE (-2)
 
-#ifdef KOPS
 STATIC_DCL void FDECL(makekops, (coord *));
 STATIC_DCL void FDECL(call_kops, (struct monst *,BOOLEAN_P));
 # ifdef OVLB
 STATIC_DCL void FDECL(kops_gone, (BOOLEAN_P));
 # endif /* OVLB */
-#endif /* KOPS */
 
 #define IS_SHOP(x)	(rooms[x].rtype >= SHOPBASE)
 
@@ -323,7 +321,6 @@ register struct monst *shkp;
 #endif /* OVLB */
 #ifdef OVL1
 
-#ifdef KOPS
 STATIC_OVL void
 call_kops(shkp, nearshop)
 register struct monst *shkp;
@@ -374,7 +371,6 @@ register boolean nearshop;
 	    makekops(&mm);
 	}
 }
-#endif	/* KOPS */
 
 /* x,y is strictly inside shop */
 char
@@ -430,11 +426,7 @@ boolean newlev;
 	}
 
 	if (rob_shop(shkp)) {
-#ifdef KOPS
 	    call_kops(shkp, (!newlev && levl[u.ux0][u.uy0].edge));
-#else
-	    (void) angry_guards(FALSE);
-#endif
 	}
 }
 
@@ -455,12 +447,8 @@ xchar x, y;
 	    return;
 
 	if (rob_shop(shkp)) {
-#ifdef KOPS
 	    /*[might want to set 2nd arg based on distance from shop doorway]*/
 	    call_kops(shkp, FALSE);
-#else
-	    (void) angry_guards(FALSE);
-#endif
 	}
 }
 
@@ -908,11 +896,7 @@ register boolean killkops;
 	(void) mnearto(shkp, x, y, TRUE);
 	level.flags.has_shop = 1;
 	if (killkops) {
-#ifdef KOPS
 		kops_gone(TRUE);
-#else
-		You_feel("vaguely apprehensive.");
-#endif
 		pacify_guards();
 	}
 	after_shk_move(shkp);
@@ -1022,9 +1006,7 @@ register boolean silentkops;
 		pline("%s calms down.", Monnam(shkp));
 
 	if(!angry_shk_exists()) {
-#ifdef KOPS
 		kops_gone(silentkops);
-#endif
 		pacify_guards();
 	}
 }
@@ -3469,7 +3451,6 @@ register int fall;
     }
 }
 
-#ifdef KOPS
 STATIC_OVL void
 makekops(mm)
 coord *mm;
@@ -3494,7 +3475,6 @@ coord *mm;
 		    (void) makemon(&mons[mndx], mm->x, mm->y, NO_MM_FLAGS);
 	}
 }
-#endif	/* KOPS */
 
 void
 pay_for_damage(dmgstr, cant_mollify)
@@ -3854,7 +3834,6 @@ struct monst *shkp;
 		pline("%s talks about the problem of shoplifters.",shkname(shkp));
 }
 
-#ifdef KOPS
 STATIC_OVL void
 kops_gone(silent)
 register boolean silent;
@@ -3873,7 +3852,6 @@ register boolean silent;
 	    pline_The("Kop%s (disappointed) vanish%s into thin air.",
 		      plur(cnt), cnt == 1 ? "es" : "");
 }
-#endif	/* KOPS */
 
 #endif /*OVLB*/
 #ifdef OVL3

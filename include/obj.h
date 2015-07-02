@@ -294,12 +294,13 @@ struct obj {
 				 (obj)->otyp == TOUCHSTONE)
 
 /* misc */
-#ifdef KOPS
+/* What do we need this #ifdef for? --Elronnd */
+/* #ifdef KOPS */
 #define is_flimsy(otmp)		(objects[(otmp)->otyp].oc_material <= LEATHER || \
 				 (otmp)->otyp == RUBBER_HOSE)
-#else
+/* #else
 #define is_flimsy(otmp)		(objects[(otmp)->otyp].oc_material <= LEATHER)
-#endif
+#endif */
 
 /* helpers, simple enough to be macros */
 #define is_plural(o)	((o)->quan > 1 || \
