@@ -6,5 +6,7 @@ This directory contains a list all of the original patches applied to this varia
 
 * The arkenstone patch.  Adds an arkenstone with various properties.  Dwarf lords and kings are occasionally carrying it.  For more information, see README.arkenstone.
 
+* The convict patch.  Adds a new role, the convict.  For more information, see README.convict.
+
 
 Also see README.NAO in the top directory.
