@@ -1575,7 +1575,7 @@ const char *filename;
 
 const char *configfile =
 #ifdef UNIX
-			".nethackrc";
+			".anethackrc";
 #else
 # if defined(MAC) || defined(__BEOS__)
 			"NetHack Defaults";
