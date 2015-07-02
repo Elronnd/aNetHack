@@ -142,10 +142,10 @@ int
 demon_talk(mtmp)		/* returns 1 if it won't attack. */
 register struct monst *mtmp;
 {
-#ifdef ARKENSTONE
+/* The arkenstone, apparently --Elronnd */
         struct obj *otmp;
         char qbuf[QBUFSZ];
-#endif
+/* End stuff related to the arkenstone, apparently --Elronnd */
 
 	long cash, demand, offer;
 
@@ -177,7 +177,6 @@ register struct monst *mtmp;
 	demand = (cash * (rnd(80) + 20 * Athome)) /
 	    (100 * (1 + (sgn(u.ualign.type) == sgn(mtmp->data->maligntyp))));
 
-#ifdef ARKENSTONE
         /* If you have the Arkenstone, the demon demands 
          * it instead of gold. */
         for(otmp = invent; otmp; otmp = otmp->nobj) {
@@ -209,7 +208,7 @@ register struct monst *mtmp;
                 }
             }
         }
-#endif
+/* End demanding arkenstone instead of cash */
 
 	if (!demand) {		/* you have no gold */
 	    mtmp->mpeaceful = 0;

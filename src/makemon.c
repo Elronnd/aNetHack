@@ -318,7 +318,7 @@ register struct monst *mtmp;
 		    } else {
 			(void)mongets(mtmp, !rn2(3) ? PICK_AXE : DAGGER);
 		    }
-#ifdef ARKENSTONE
+/* Dwarf kings get generated with the Arkenstone --Elronnd */
                     if((mm == PM_DWARF_KING) && !rn2(75) &&
                         !exist_artifact(DIAMOND, artiname(ART_ARKENSTONE))) {
                         otmp = mksobj(DIAMOND, FALSE, FALSE);
@@ -326,7 +326,6 @@ register struct monst *mtmp;
                         otmp = oname(otmp, artiname(ART_ARKENSTONE));
                         (void) mpickobj(mtmp, otmp);
                     }
-#endif /* ARKENSTONE */
 		}
 		break;
 # ifdef KOPS
