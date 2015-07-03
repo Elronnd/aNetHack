@@ -8,5 +8,7 @@ This directory contains a list all of the original patches applied to this varia
 
 * The convict patch.  Adds a new role, the convict.  For more information, see README.convict.
 
+* The Brad's pit patch.  Makes a pit called Brad's pit, with "Brad's" engraved on the bottom.  You get +1 luck the first time you fall down it.
+
 
 Also see README.NAO in the top directory.
