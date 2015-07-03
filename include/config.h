@@ -388,6 +388,7 @@ typedef long glyph_t;
 
 /*#define GOLDOBJ */	/* Gold is kept on obj chains - Helge Hafting */
 #define AUTOPICKUP_EXCEPTIONS  /* exceptions to autopickup */
+#define BRADS_TEXT "Brad's"
 
 #define DUMP_LOG        /* Dump game end information to a file */
 #define DUMP_FN "/usr/local/anethack/dumplog/%t"      /* Fixed dumpfile name, if you want
