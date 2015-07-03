@@ -2079,13 +2079,13 @@
                Options  may  be  set in a number of ways.  Within the game,
           the `O' command allows you to view all options and change most of
           them.   You can also set options automatically by placing them in
-          the NETHACKOPTIONS environment variable  or  in  a  configuration
+          the ANETHACKOPTIONS environment variable  or  in  a  configuration
           file.  Some versions of NetHack also have front-end programs that
           allow you to set options before starting the game.
 
-          9.2.  Using the NETHACKOPTIONS environment variable
+          9.2.  Using the ANETHACKOPTIONS environment variable
 
-               The NETHACKOPTIONS variable is  a  comma-separated  list  of
+               The ANETHACKOPTIONS variable is  a  comma-separated  list  of
           initial  values for the various options.  Some can only be turned
           on or off.  You turn one of these on by adding the  name  of  the
           option to the list, and turn it off by typing a `!' or ``no'' be-
@@ -2099,7 +2099,7 @@
           ``Blue  Meanie'',  and  the fruit is set to ``papaya'', you would
           enter the command
 
-               % setenv NETHACKOPTIONS "autoquiver,\!autopickup,name:Blue Meanie,fruit:papaya"
+               % setenv ANETHACKOPTIONS "autoquiver,\!autopickup,name:Blue Meanie,fruit:papaya"
 
           in csh (note the need to escape the ! since it's special  to  the
           shell), or
@@ -2116,8 +2116,8 @@
 
 
 
-               $ NETHACKOPTIONS="autoquiver,!autopickup,name:Blue Meanie,fruit:papaya"
-               $ export NETHACKOPTIONS
+               $ ANETHACKOPTIONS="autoquiver,!autopickup,name:Blue Meanie,fruit:papaya"
+               $ export ANETHACKOPTIONS
 
           in sh or ksh.
 
@@ -2126,7 +2126,7 @@
                Any  line  in  the  configuration  file starting with `#' is
           treated as a comment.  Any line in the configuration file  start-
           ing  with ``OPTIONS='' may be filled out with options in the same
-          syntax as in  NETHACKOPTIONS.   Any  line  starting  with  ``DUN-
+          syntax as in  ANETHACKOPTIONS.   Any  line  starting  with  ``DUN-
           GEON='',  ``EFFECTS='',  ``MONSTERS='', ``OBJECTS='', ``TRAPS='',
           or ``BOULDER='' is taken as defining the  corresponding  dungeon,
           effects, monsters, objects traps or boulder option in a different
@@ -2144,7 +2144,7 @@
           cusses that.
 
                The default name of the configuration file varies on differ-
-          ent operating systems, but NETHACKOPTIONS can also be set to  the
+          ent operating systems, but ANETHACKOPTIONS can also be set to  the
           full  name  of  a  file  you want to use (possibly preceded by an
           `@').
 

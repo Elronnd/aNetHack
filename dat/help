@@ -119,7 +119,7 @@ Commands:
         O       Review current options and possibly change them.
                 A menu displaying the option settings will be displayed
                 and most can be changed by simply selecting their entry.
-                Options are usually set before the game with a NETHACKOPTIONS
+                Options are usually set before the game with a ANETHACKOPTIONS
                 environment variable, or via a config file (defaults.nh,
                 NetHack Defaults, nethack.cnf, .nethackrc, etc.), not with 
                 the 'O' command.

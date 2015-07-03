@@ -2028,15 +2028,15 @@ behaves.
 Options may be set in a number of ways.  Within the game, the `{\tt O}'
 command allows you to view all options and change most of them.
 You can also set options automatically by placing them in the
-``NETHACKOPTIONS'' environment variable or in a configuration file.
+``ANETHACKOPTIONS'' environment variable or in a configuration file.
 Some versions of {\it NetHack\/} also have front-end programs that allow
 you to set options before starting the game.
 
 %.hn 2
-\subsection*{Using the NETHACKOPTIONS environment variable}
+\subsection*{Using the ANETHACKOPTIONS environment variable}
 
 %.pg
-The NETHACKOPTIONS variable is a comma-separated list of initial
+The ANETHACKOPTIONS variable is a comma-separated list of initial
 values for the various options.  Some can only be turned on or off.
 You turn one of these on by adding the name of the option to the list,
 and turn it off by typing a `{\tt !}' or ``{\tt no}'' before the name.
@@ -2051,7 +2051,7 @@ is on, {\it autopickup\/} is off, the {\it name\/} is set to ``Blue Meanie'',
 and the {\it fruit\/} is set to ``papaya'', you would enter the command
 %.sd
 \begin{verbatim}
-    setenv NETHACKOPTIONS "autoquiver,\!autopickup,name:Blue Meanie,fruit:papaya"
+    setenv ANETHACKOPTIONS "autoquiver,\!autopickup,name:Blue Meanie,fruit:papaya"
 \end{verbatim}
 %.ed
 
@@ -2059,8 +2059,8 @@ and the {\it fruit\/} is set to ``papaya'', you would enter the command
 (note the need to escape the ! since it's special to the shell), or
 %.sd
 \begin{verbatim}
-    NETHACKOPTIONS="autoquiver,!autopickup,name:Blue Meanie,fruit:papaya"
-    export NETHACKOPTIONS
+    ANETHACKOPTIONS="autoquiver,!autopickup,name:Blue Meanie,fruit:papaya"
+    export ANETHACKOPTIONS
 \end{verbatim}
 %.ed
 
@@ -2072,7 +2072,7 @@ and the {\it fruit\/} is set to ``papaya'', you would enter the command
 %.pg
 Any line in the configuration file starting with `{\tt \#}' is treated as a comment.
 Any line in the configuration file starting with ``{\tt OPTIONS=}'' may be
-filled out with options in the same syntax as in NETHACKOPTIONS.
+filled out with options in the same syntax as in ANETHACKOPTIONS.
 Any line starting with ``{\tt DUNGEON=}'', ``{\tt EFFECTS=}'',
 ``{\tt MONSTERS=}'', ``{\tt OBJECTS=}'', ``{\tt TRAPS=}'', 
 or ``{\tt BOULDER=}''
@@ -2094,7 +2094,7 @@ There is a section of this Guidebook that discusses that.
 
 %.pg
 The default name of the configuration file varies on different
-operating systems, but NETHACKOPTIONS can also be set to
+operating systems, but ANETHACKOPTIONS can also be set to
 the full name of a file you want to use (possibly preceded by an `{\tt @}').
 
 %.hn 2
