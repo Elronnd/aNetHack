@@ -334,13 +334,10 @@ typedef long glyph_t;
  * complexity of the game but also to the size of the load module.
  */
 
-/* dungeon features */
-/* #define SINKS */		/* Kitchen sinks - Janet Walz */   /* All code that relied on this define now makes sinks function with no need of a define --Elronnd */
 /* dungeon levels */
 #define WALLIFIED_MAZE	/* Fancy mazes - Jean-Christophe Collet */
 #define REINCARNATION	/* Special Rogue-like levels */
 /* monsters & objects */
-#define SEDUCE		/* Succubi/incubi seduction, by KAA, suggested by IM */
 #define STEED		/* Riding steeds */
 #define TOURIST		/* Tourist players with cameras and Hawaiian shirts */
 #define CONVICT		/* Convict player with heavy iron ball */
