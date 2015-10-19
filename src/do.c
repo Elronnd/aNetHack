@@ -7,12 +7,10 @@
 #include "hack.h"
 #include "lev.h"
 
-#ifdef SINKS
 # ifdef OVLB
 STATIC_DCL void FDECL(trycall, (struct obj *));
 # endif /* OVLB */
 STATIC_DCL void FDECL(dosinkring, (struct obj *));
-#endif /* SINKS */
 
 STATIC_PTR int FDECL(drop, (struct obj *));
 STATIC_PTR int NDECL(wipeoff);
@@ -250,7 +248,6 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 	}
 }
 
-#ifdef SINKS
 STATIC_OVL
 void
 trycall(obj)
@@ -402,7 +399,6 @@ giveback:
 	} else
 		useup(obj);
 }
-#endif
 
 #endif /* OVLB */
 #ifdef OVL0
@@ -486,13 +482,11 @@ register struct obj *obj;
 				mbodypart(u.ustuck, STOMACH));
 		}
 	} else {
-#ifdef SINKS
 	    if((obj->oclass == RING_CLASS || obj->otyp == MEAT_RING) &&
 			IS_SINK(levl[u.ux][u.uy].typ)) {
 		dosinkring(obj);
 		return(1);
 	    }
-#endif
 	    if (!can_reach_floor()) {
 		if(flags.verbose) You("drop %s.", doname(obj));
 #ifndef GOLDOBJ

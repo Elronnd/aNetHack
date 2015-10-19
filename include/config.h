@@ -335,7 +335,7 @@ typedef long glyph_t;
  */
 
 /* dungeon features */
-#define SINKS		/* Kitchen sinks - Janet Walz */
+/* #define SINKS */		/* Kitchen sinks - Janet Walz */   /* All code that relied on this define now makes sinks function with no need of a define --Elronnd */
 /* dungeon levels */
 #define WALLIFIED_MAZE	/* Fancy mazes - Jean-Christophe Collet */
 #define REINCARNATION	/* Special Rogue-like levels */
