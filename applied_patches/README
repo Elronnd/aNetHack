@@ -10,5 +10,6 @@ This directory contains a list all of the original patches applied to this varia
 
 * The Brad's pit patch.  Makes a pit called Brad's pit, with "Brad's" engraved on the bottom.  You get +1 luck the first time you fall down it.
 
+* The grudge patch, with the UnNetHack modifications.  Makes various monsters that should be hostile to each other attack each other
 
 Also see README.NAO in the top directory.
