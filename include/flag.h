@@ -241,9 +241,7 @@ struct instance_flags {
 	boolean lan_mail;	/* mail is initialized */
 	boolean lan_mail_fetched; /* mail is awaiting display */
 #endif
-#ifdef SHOW_BORN
 	boolean show_born;	/* show numbers of created monsters */
-#endif
 #ifdef SORTLOOT
 	char sortloot;          /* sort items to loot alphabetically */
 #endif

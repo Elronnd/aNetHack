@@ -129,9 +129,7 @@ STATIC_PTR int NDECL(wiz_show_vision);
 STATIC_PTR int NDECL(wiz_mon_polycontrol);
 STATIC_PTR int NDECL(wiz_show_wmodes);
 STATIC_PTR int NDECL(wiz_showkills);	/* showborn patch */
-#ifdef SHOW_BORN
 extern void FDECL(list_vanquished, (int, BOOLEAN_P)); /* showborn patch */
-#endif /* SHOW_BORN */
 #if defined(__BORLANDC__) && !defined(_WIN32)
 extern void FDECL(show_borlandc_stats, (winid));
 #endif
