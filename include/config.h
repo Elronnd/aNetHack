@@ -384,6 +384,7 @@ typedef long glyph_t;
 #endif
 
 /*#define GOLDOBJ */	/* Gold is kept on obj chains - Helge Hafting */
+#define AUTOPICKUP_EXCEPTIONS  /* exceptions to autopickup */
 #define BRADS_TEXT "Brad's"
 
 #define DUMP_LOG        /* Dump game end information to a file */
@@ -399,11 +400,11 @@ typedef long glyph_t;
 
 /* Filename for the wizard-mode command for dumping the map data.
    Can be left undefined, in which case the wiz-mode command does nothing. */
-#define MAPDUMP_FN "/usr/local/anethack/%n/mapdump"
+#define MAPDUMP_FN "/dgldir/userdata/%n/nethack/mapdump"
 
 /* Filename for where HUPping a game is saved.
    Can be left undefined, in which case HUPping doesn't write the data. */
-#define HUPLIST_FN "/usr/local/anethack/%n/hangup"
+#define HUPLIST_FN "/dgldir/userdata/%n/nethack/hangup"
 
 /* Filename for dgamelaunch extra info field.
    Can be left undefined for not writing extrainfo. */

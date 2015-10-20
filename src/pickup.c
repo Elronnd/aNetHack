@@ -595,6 +595,7 @@ end_query:
 	return (n_tried > 0);
 }
 
+#ifdef AUTOPICKUP_EXCEPTIONS
 boolean
 is_autopickup_exception(obj, grab)
 struct obj *obj;
@@ -617,6 +618,7 @@ boolean grab;	 /* forced pickup, rather than forced leave behind? */
 	}
 	return FALSE;
 }
+#endif /* AUTOPICKUP_EXCEPTIONS */
 
 /*
  * Pick from the given list using flags.pickup_types.  Return the number
@@ -640,14 +642,21 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 	for (n = 0, curr = olist; curr; curr = FOLLOW(curr, follow))
 
 
+#ifndef AUTOPICKUP_EXCEPTIONS
+           if (!*otypes || index(otypes, curr->oclass) || (iflags.pickup_thrown && curr->was_thrown))
+#else
 	     if (((!*otypes || index(otypes, curr->oclass) ||
 		   is_autopickup_exception(curr, TRUE)) &&
 		  !is_autopickup_exception(curr, FALSE)) || (iflags.pickup_thrown && curr->was_thrown))
+#endif
 		n++;
 
 	if (n) {
 	    *pick_list = pi = (menu_item *) alloc(sizeof(menu_item) * n);
 	    for (n = 0, curr = olist; curr; curr = FOLLOW(curr, follow))
+#ifndef AUTOPICKUP_EXCEPTIONS
+               if (!*otypes || index(otypes, curr->oclass) || (iflags.pickup_thrown && curr->was_thrown)) {
+#else
 		 if (((!*otypes || index(otypes, curr->oclass) ||
 		       is_autopickup_exception(curr, TRUE)) &&
 		      !is_autopickup_exception(curr, FALSE)) || (iflags.pickup_thrown && curr->was_thrown)) {
