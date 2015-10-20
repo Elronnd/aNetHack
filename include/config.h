@@ -334,6 +334,7 @@ typedef long glyph_t;
  * complexity of the game but also to the size of the load module.
  */
 
+#define OTHER_SERVICES  /* Shopkeeper services from Slash'EM */
 /* dungeon levels */
 #define WALLIFIED_MAZE	/* Fancy mazes - Jean-Christophe Collet */
 #define REINCARNATION	/* Special Rogue-like levels */
