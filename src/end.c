@@ -1478,9 +1478,11 @@ boolean want_dump;
 			else
 			    Sprintf(buf, "%d %s",
 				    nkilled, makeplural(mons[i].mname));
+#ifdef SHOW_BORN
 			if (iflags.show_born && nkilled != mvitals[i].born)
 			    Sprintf(buf + strlen(buf), " (%d created)",
 				    (int) mvitals[i].born);
+#endif
 		    }
 		    if (c == 'y') putstr(klwin, 0, buf);
 #ifdef DUMP_LOG
@@ -1538,12 +1540,15 @@ boolean ask;
 {
     register int i;
     int ngenocided=0;
+#ifdef SHOW_EXTINCT
     int nextincted=0;
+#endif
     char c;
     winid klwin;
     char buf[BUFSZ];
 
     /* get totals first */
+#ifdef SHOW_EXTINCT
     for (i = LOW_PM; i < NUMMONS; i++) {
 	if (mvitals[i].mvflags & G_GENOD)
 	    ngenocided++;
@@ -1551,22 +1556,31 @@ boolean ask;
 	    nextincted++;
     }
     ngenocided = num_genocides();
+#endif
 
     /* genocided species list */
     if (ngenocided != 0
+#ifdef SHOW_EXTINCT
       || nextincted != 0
+#endif
     ) {
+#ifdef SHOW_EXTINCT
 	if (nextincted != 0)
 	  c = ask ?
 	  yn_function("Do you want a list of species genocided or extinct?",
 		      ynqchars, defquery) : defquery;
        else
+#endif
 	c = ask ? yn_function("Do you want a list of species genocided?",
 			      ynqchars, defquery) : defquery;
 	if (c == 'q') done_stopprint++;
 	if (c == 'y') {
 	    klwin = create_nhwindow(NHW_MENU);
+#ifdef SHOW_EXTINCT
 	    Sprintf(buf, "Genocided or extinct species:");
+#else
+	    Sprintf(buf, "Genocided species:");
+#endif
 	    putstr(klwin, 0, buf);
 	    putstr(klwin, 0, "");
 #ifdef DUMP_LOG
@@ -1574,15 +1588,21 @@ boolean ask;
 #endif
 
 	    for (i = LOW_PM; i < NUMMONS; i++)
+#ifdef SHOW_EXTINCT
 	      if (mvitals[i].mvflags & G_GONE && !(mons[i].geno & G_UNIQ) ){
+#else
+		if (mvitals[i].mvflags & G_GENOD) {
+#endif
 		    if ((mons[i].geno & G_UNIQ) && i != PM_HIGH_PRIEST)
 			Sprintf(buf, "%s%s",
 				!type_is_pname(&mons[i]) ? "" : "the ",
 				mons[i].mname);
 		    else
 			Strcpy(buf, makeplural(mons[i].mname));
+#ifdef SHOW_EXTINCT
 		    if( !(mvitals[i].mvflags & G_GENOD) )
 			Strcat(buf, " (extinct)");
+#endif
 		    putstr(klwin, 0, buf);
 #ifdef DUMP_LOG
 		    if (want_dump)  dump("  ", buf);
@@ -1590,12 +1610,15 @@ boolean ask;
 		}
 
 	    putstr(klwin, 0, "");
+#ifdef SHOW_EXTINCT
 	    if (ngenocided>0) {
+#endif
 	      Sprintf(buf, "%d species genocided.", ngenocided);
 	      putstr(klwin, 0, buf);
 #ifdef DUMP_LOG
 	      if (want_dump)  dump("  ", buf);
 #endif
+#ifdef SHOW_EXTINCT
 	    }
 	    if (nextincted>0) {
 	      Sprintf(buf, "%d species extinct.", nextincted);
@@ -1604,6 +1627,7 @@ boolean ask;
 	      if (want_dump) dump(" ", buf);
 #endif
             }
+#endif /* SHOW_EXTINCT */
 #ifdef DUMP_LOG
 	      if (want_dump)  dump("", "");
 #endif
