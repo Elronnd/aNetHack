@@ -2105,7 +2105,7 @@ use_weapon:
 				if (mon->data == &mons[PM_SHADE])
 				    Your("attempt to surround %s is harmless.",
 					mon_nam(mon));
-/*				else if ((mon->data == &mons[PM_IRON_GOLEM]) && (youmonst->data.mflags2 & M2_WATER_VORTEX)) {
+/*				else if ((mon->data == &mons[PM_IRON_GOLEM]) && (youmonst.data->mflags2 & M2_WATER_VORTEX)) {
 				    pline("It falls to pieces");
 					xkilled(mon,0);
 				} */
