@@ -1,1 +1,11 @@
-Thanks to kerio and GNU, we have a "GNUmakefile", which makes it a breeze to compile.  In order to compile, you need the GNU version of make, a working c compiler (I reccomend clang or gcc), flex, bison, and a the curses library.  These should be fairly straightforward to install using your system's default package manager.  Then, as root, type "make install", and everything should be where it's supposed to!
+aNetHack is designed to be built on UNIX®-based systems.  The developer will attempt to make aNetHack available for as many systems as possible, but makes not guarantees as to aNetHack's efficacy on Windows® or Mac®.
+
+Required packages for compiling
+
+* A working C compiler (I reccomend Clang or GCC)
+* The GNU version of make
+* Flex
+* Bison
+* The curses development library (optional, but program files require editing if you want to not install this).
+
+Thanks to Edoardo Spadolini, we have a "GNUmakefile", which makes it much easier to compile.  If all required packages are installed, then simply running "make install" as root in the top-level directory should do everything you want it to in any modern Unix® based system (and Mac?  Someone please test this).  If you have any problems, contact me.

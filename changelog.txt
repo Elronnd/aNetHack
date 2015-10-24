@@ -1,0 +1,56 @@
+WARNING!  THIS FILE CONTAINS POTENTIAL SPOILER INFORMATION ON ANETHACK.  IF YOU WISH TO PLAY ANETHACK SPOILER-FREE, DO *NOT* READ THIS FILE.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Changelog for aNetHack:
+
+* Add a new castle variant.
+
+* Add a "Expensive platinum spellbound imitation amulet of yendor".  Drops from the priest of Moloch, identifies as amulet of Yendor, refuses to enter bags, but doesn't let you go up the stairs to the plains.
+
+* Add "Water vortices", a vortex that can rust your inventory, or kill rust monsters.
+
+* Add an "applied_patches" directory, which includes the original (sometimes they had to be modified to work with this variant) versions of patches and a short README.
+
+* Add the dungeon overview patch
+
+* Add the Elbereth status line patch
+
+* Add the arkenstone patch
+
+* Add the convict patch
+
+* Apply the Brad's pitt patch
+
+* Added Nefi's grudge patch, with the UnNetHack grudges
+
+* Take out a bunch of #ifdefs for features that everyone will always want
+
+* Incorperate shopkeeper services from Slash'EM
+
+* Add sokoban levels from NetHack Fourk
