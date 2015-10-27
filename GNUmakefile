@@ -44,7 +44,7 @@ install: all
 	mkdir -p $(VARDIR)/save
 	$(CHOWN) $(GAMEUID):$(GAMEGID) $(VARDIR)/save
 	cp sys/unix/anethack.sh $(PREFIX)/bin/anethack
-	chmod 755 /usr/bin/anethack
+	chmod 755 $(PREFIX)/bin/anethack
 
 ATOMIC_LN = ln $(1) $(2).new && mv $(2).new $(2)
 
