@@ -12,4 +12,6 @@ This directory contains a list all of the original patches applied to this varia
 
 * The grudge patch, with the UnNetHack modifications.  Makes various monsters that should be hostile to each other attack each other
 
+* The darkroom patch.  Makes explored, but dark areas a different color than unexplored areas.
+
 Also see README.NAO in the top directory.
