@@ -1014,6 +1014,7 @@ genericptr_t num;
 	} else if(levl[zx][zy].typ == SCORR) {
 		levl[zx][zy].typ = CORR;
 		unblock_point(zx,zy);
+		You("find a secret passage!");
 		magic_map_background(zx, zy, 0);
 		newsym(zx, zy);
 		(*(int*)num)++;
@@ -1200,6 +1201,7 @@ register int aflag;
 			if(rnl(7-fund)) continue;
 			levl[x][y].typ = CORR;
 			unblock_point(x,y);	/* vision */
+			You("find a secret passage!");
 			exercise(A_WIS, TRUE);
 			nomul(0, NULL);
 			newsym(x,y);
