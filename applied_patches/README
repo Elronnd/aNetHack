@@ -14,4 +14,6 @@ This directory contains a list all of the original patches applied to this varia
 
 * The darkroom patch.  Makes explored, but dark areas a different color than unexplored areas.
 
+* The glyphcolor patch.  Makes various branches different colors.
+
 Also see README.NAO in the top directory.
