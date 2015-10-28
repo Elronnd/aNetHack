@@ -604,7 +604,7 @@ boolean grab;	 /* forced pickup, rather than forced leave behind? */
 	/*
 	 *  Does the text description of this match an exception?
 	 */
-	char *objdesc = makesingular(doname(obj));
+	char *objdesc = makesingular(doname_with_price(obj));
 	struct autopickup_exception *ape = (grab) ?
 					iflags.autopickup_exceptions[AP_GRAB] :
 					iflags.autopickup_exceptions[AP_LEAVE];
