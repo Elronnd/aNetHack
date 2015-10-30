@@ -14,6 +14,8 @@ STATIC_DCL boolean FDECL(findtravelpath, (BOOLEAN_P));
 STATIC_DCL boolean FDECL(monstinroom, (struct permonst *,int));
 STATIC_DCL void FDECL(move_update, (BOOLEAN_P));
 
+static boolean door_opened;	/* set to true if door was opened during test_move */
+
 #define IS_SHOP(x)	(rooms[x].rtype >= SHOPBASE)
 
 #ifdef OVL2
@@ -548,6 +550,8 @@ int mode;
     register struct rm *tmpr = &levl[x][y];
     register struct rm *ust;
 
+    door_opened = FALSE;
+ 
     /*
      *  Check for physical obstacles.  First, the place we are going.
      */
@@ -596,6 +600,10 @@ int mode;
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
 		    else if (x == ux || y == uy) {
+			if (iflags.autoopen && !flags.run
+				&& !Confusion && !Stunned && !Fumbling) {
+			    door_opened = flags.move = doopen_indir(x, y);
+			} else
 			if (Blind || Stunned || ACURR(A_DEX) < 10 || Fumbling) {
 #ifdef STEED
 			    if (u.usteed) {
@@ -1256,8 +1264,10 @@ domove()
 	}
 
 	if (!test_move(u.ux, u.uy, x-u.ux, y-u.uy, DO_MOVE)) {
-	    flags.move = 0;
-	    nomul(0, NULL);
+	    if (!door_opened) {
+		flags.move = 0;
+		nomul(0, NULL);
+	    }
 	    return;
 	}
 
