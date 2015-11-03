@@ -1,0 +1,72 @@
+diff -ur nethack-3.4.3/include/flag.h nethack-3.4.3-pile/include/flag.h
+--- nethack-3.4.3/include/flag.h	2006-04-09 19:49:53.000000000 +0100
++++ nethack-3.4.3-pile/include/flag.h	2006-04-10 20:03:35.000000000 +0100
+@@ -271,6 +271,7 @@
+ 	boolean  showrace;	/* show hero glyph by race rather than by role */
+ 	boolean  travelcmd;	/* allow travel command */
+ 	int	 runmode;	/* update screen display during run moves */
++	int  pilesize; /* how many items to list automatically */
+ #ifdef AUTOPICKUP_EXCEPTIONS
+ 	struct autopickup_exception *autopickup_exceptions[2];
+ #define AP_LEAVE 0
+diff -ur nethack-3.4.3/src/invent.c nethack-3.4.3-pile/src/invent.c
+--- nethack-3.4.3/src/invent.c	2006-04-09 19:49:53.000000000 +0100
++++ nethack-3.4.3-pile/src/invent.c	2006-04-10 20:03:45.000000000 +0100
+@@ -2160,7 +2160,7 @@
+ 	const char *dfeature = (char *)0;
+ 	char fbuf[BUFSZ], fbuf2[BUFSZ];
+ 	winid tmpwin;
+-	boolean skip_objects = (obj_cnt >= 5), felt_cockatrice = FALSE;
++	boolean skip_objects = (obj_cnt > iflags.pilesize), felt_cockatrice = FALSE;
+ 
+ 	if (u.uswallow && u.ustuck) {
+ 	    struct monst *mtmp = u.ustuck;
+diff -ur nethack-3.4.3/src/options.c nethack-3.4.3-pile/src/options.c
+--- nethack-3.4.3/src/options.c	2006-04-09 19:49:53.000000000 +0100
++++ nethack-3.4.3-pile/src/options.c	2006-04-10 20:10:00.000000000 +0100
+@@ -293,6 +293,8 @@
+ 						20, SET_IN_GAME },
+ 	{ "pickup_types", "types of objects to pick up automatically",
+ 						MAXOCLASSES, SET_IN_GAME },
++	{ "pilesize", "maximum number of items on floor to list automatically",
++						20, SET_IN_GAME },
+ 	{ "player_selection", "choose character via dialog or prompts",
+ 						12, DISP_IN_GAME },
+ 	{ "race",     "your starting race (e.g., Human, Elf)",
+@@ -512,6 +514,7 @@
+ 	iflags.prevmsg_window = 's';
+ #endif
+ 	iflags.menu_headings = ATR_INVERSE;
++	iflags.pilesize = 5;
+ 
+ 	/* Use negative indices to indicate not yet selected */
+ 	flags.initrole = -1;
+@@ -1705,6 +1708,18 @@
+ 		}
+ 		return;
+ 	}
++
++	fullname = "pilesize";
++	if (match_optname(opts, fullname, sizeof("pilesize")-1, TRUE)) {
++		if (negated) {
++			bad_negation(fullname, FALSE);
++			return;
++		} else if (!(op = string_for_opt(opts, FALSE))) return;
++		iflags.pilesize = atoi(op);
++		if (iflags.pilesize < 1) iflags.pilesize = 1;
++		return;
++	}
++
+ 	/* WINCAP
+ 	 * player_selection: dialog | prompts */
+ 	fullname = "player_selection";
+@@ -3054,6 +3069,9 @@
+ 		oc_to_str(flags.pickup_types, ocl);
+ 		Sprintf(buf, "%s", ocl[0] ? ocl : "all" );
+ 	     }
++	else if (!strcmp(optname, "pilesize")) {
++		Sprintf(buf, "%u", iflags.pilesize);
++	     }
+ 	else if (!strcmp(optname, "race"))
+ 		Sprintf(buf, "%s", rolestring(flags.initrace, races, noun));
+ 	else if (!strcmp(optname, "role"))

@@ -180,6 +180,7 @@ struct instance_flags {
 	int *opt_booldup;	/* for duplication of boolean opts in config file */
 	int *opt_compdup;	/* for duplication of compound opts in config file */
 	uchar	bouldersym;	/* symbol for boulder display */
+	boolean autoexplore
 	boolean travel1;	/* first travel step */
 	coord	travelcc;	/* coordinates for travel_cache */
 #ifdef QWERTZ
@@ -333,6 +334,7 @@ struct instance_flags {
 	boolean  showrace;	/* show hero glyph by race rather than by role */
 	boolean  travelcmd;	/* allow travel command */
 	int	 runmode;	/* update screen display during run moves */
+	int  pilesize; /* how many items to list automatically */
 #ifdef AUTOPICKUP_EXCEPTIONS
 	struct autopickup_exception *autopickup_exceptions[2];
 #define AP_LEAVE 0
