@@ -501,6 +501,12 @@ bot2()
 #else
   Sprintf(nb = eos(nb), " %s", hu_stat[u.uhs]);
 #endif
+  if(Levitation)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	add_colored_text("Lev", newbot2);
+#else
+  Strcat(nb = eos(nb), " Lev");
+#endif
   if(Confusion)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
       add_colored_text("Conf", newbot2);
