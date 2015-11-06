@@ -241,14 +241,14 @@ static void
 stripspe(obj)
 register struct obj *obj;
 {
-	if (obj->blessed) pline(nothing_happens);
+	if (obj->blessed) pline("%s", nothing_happens);
 	else {
 		if (obj->spe > 0) {
 		    obj->spe = 0;
 		    if (obj->otyp == OIL_LAMP || obj->otyp == BRASS_LANTERN)
 			obj->age = 0;
 		    Your("%s %s briefly.",xname(obj), otense(obj, "vibrate"));
-		} else pline(nothing_happens);
+		} else pline("%s", nothing_happens);
 	}
 }
 
@@ -405,7 +405,7 @@ int curse_bless;
 		    if (obj->spe < 3)
 			Your("marker seems permanently dried out.");
 		    else
-			pline(nothing_happens);
+			pline("%s", nothing_happens);
 		} else if (is_blessed) {
 		    n = rn1(16,15);		/* 15..30 */
 		    if (obj->spe + n <= 50)
@@ -463,7 +463,7 @@ int curse_bless;
 		    if (obj->spe < 5) {
 			obj->spe++;
 			p_glow1(obj);
-		    } else pline(nothing_happens);
+		    } else pline("%s", nothing_happens);
 		}
 		break;
 	    case HORN_OF_PLENTY:
@@ -1383,7 +1383,7 @@ register struct obj	*sobj;
 		cc.x = u.ux;
 		cc.y = u.uy;
 		if (getpos(&cc, TRUE, "the desired position") < 0) {
-		    pline(Never_mind);
+		    pline("%s", Never_mind);
 		    return 0;
 		}
 		if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
@@ -1532,7 +1532,7 @@ do_class_genocide()
 
 	for(j=0; ; j++) {
 		if (j >= 5) {
-			pline(thats_enough_tries);
+			pline("%s", thats_enough_tries);
 			return;
 		}
 		do {
@@ -1701,7 +1701,7 @@ int how;
 	} else {
 	    for(i = 0; ; i++) {
 		if(i >= 5) {
-		    pline(thats_enough_tries);
+		    pline("%s", thats_enough_tries);
 		    return;
 		}
 		getlin("What monster do you want to genocide? [type the name]",
@@ -1824,7 +1824,7 @@ int how;
 	    if (cnt)
 		pline("Sent in some %s.", makeplural(buf));
 	    else
-		pline(nothing_happens);
+		pline("%s", nothing_happens);
 	}
 }
 
@@ -1957,7 +1957,7 @@ create_particular()
 	} while (++tries < 5);
 
 	if (tries == 5) {
-	    pline(thats_enough_tries);
+	    pline("%s", thats_enough_tries);
 	} else {
 	    (void) cant_create(&which, FALSE);
 	    whichpm = &mons[which];

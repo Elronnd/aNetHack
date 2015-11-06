@@ -9,6 +9,7 @@
 #ifdef POSITIONBAR
 STATIC_DCL void NDECL(do_positionbar);
 #endif
+extern void ck_server_admin_msg();
 #ifdef OVL0
 static int prev_hp_notify;
 char *
@@ -26,7 +27,7 @@ while (*f) {
 if (ispercent) {
 switch (*f) {
 case 'a':
-snprintf (p, end + 1 - p, "%ld", abs(uhp()-prev_hp_notify));
+snprintf (p, end + 1 - p, "%d", abs(uhp()-prev_hp_notify));
 while (*p != '\0')
 p++;
 break;
@@ -35,7 +36,7 @@ snprintf (p, end + 1 - p, "%c", (prev_hp_notify > uhp() ? '-' : '+'));
 p++;
 break;
 case 'm':
-snprintf (p, end + 1 - p, "%ld", uhpmax());
+snprintf (p, end + 1 - p, "%d", uhpmax());
 while (*p != '\0')
 p++;
 break;
@@ -43,7 +44,7 @@ case 'H':
 if (uhp() == uhpmax()) {
 snprintf (p, end + 1 - p, "%s", "max");
 } else {
-snprintf (p, end + 1 - p, "%ld", uhp());
+snprintf (p, end + 1 - p, "%d", uhp());
 }
 while (*p != '\0')
 p++;

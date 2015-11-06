@@ -1327,7 +1327,7 @@ int mdead;
 	    } else {
 		if(canseemon(magr))
 			pline(magr->data == &mons[PM_WOODCHUCK] ? "ZOT!" : 
-			"%s is hit by magic missiles appearing from thin air!",Monnam(magr));
+			"%s is hit by magic missiles appearing from thin air!", Monnam(magr));
 		goto assess_dmg;
 	    }
 	    break;

@@ -6,6 +6,7 @@
 #include "dgn_file.h"
 #include "dlb.h"
 #include "display.h"
+#include <ctype.h>
 
 #ifdef OVL1
 
@@ -1809,7 +1810,7 @@ recbranch_mapseen(source, dest)
 	/* branch not found, so not a real branch. */
 	if (!br) return;
   
-	if (mptr = find_mapseen(source)) {
+	if (mptr == find_mapseen(source)) {
 		if (mptr->br && br != mptr->br)
 			impossible("Two branches on the same level?");
 		mptr->br = br;
@@ -2024,7 +2025,7 @@ STATIC_OVL boolean
 interest_mapseen(mptr)
 mapseen *mptr;
 {
-	return (on_level(&u.uz, &mptr->lev) || (!mptr->feat.forgot) && (
+	return ((on_level(&u.uz, &mptr->lev) || (!mptr->feat.forgot)) && (
 		INTEREST(mptr->feat) ||
 		(mptr->custom) || 
 		(mptr->br)
@@ -2315,7 +2316,7 @@ boolean printdun;
 	/* wizmode prints out proto dungeon names for clarity */
 	if (wizard) {
 		s_level *slev;
-		if (slev = Is_special(&mptr->lev))
+		if (slev == Is_special(&mptr->lev))
 			Sprintf(eos(buf), " [%s]", slev->proto);
 	}
 #endif

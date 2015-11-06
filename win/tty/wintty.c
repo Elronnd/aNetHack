@@ -28,6 +28,8 @@ extern short glyph2tile[];
 extern void msmsg(const char *,...);
 # endif
 #endif
+extern void term_start_attr(int attr);
+extern void term_start_bgcolor(int color);
 
 
 #ifndef NO_TERMS

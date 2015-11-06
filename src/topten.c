@@ -53,7 +53,7 @@ struct toptenentry {
 	int deathdnum, deathlev;
 	int maxlvl, hp, maxhp, deaths;
 	int ver_major, ver_minor, patchlevel;
-	long deathdate, birthdate;
+	int deathdate, birthdate;
 	int uid;
 	char plrole[ROLESZ+1];
 	char plrace[ROLESZ+1];

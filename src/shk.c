@@ -1377,7 +1377,7 @@ proceed:
 		    else Strcat(sbuf,
 			   "for gold picked up and the use of merchandise.");
 		} else Strcat(sbuf, "for the use of merchandise.");
-		pline(sbuf);
+		pline("%s", sbuf);
 #ifndef GOLDOBJ
 		if (u.ugold + eshkp->credit < dtmp) {
 #else
@@ -4341,7 +4341,7 @@ shk_identify(slang, shkp)
 	/* Here we go */
 	/* KMH -- fixed */
 	if (ESHK(shkp)->services & (SHK_ID_BASIC|SHK_ID_PREMIUM) ==
-			SHK_ID_BASIC|SHK_ID_PREMIUM) {
+			(SHK_ID_BASIC|SHK_ID_PREMIUM)) {
 		ident_type = yn_function("[B]asic service or [P]remier",
 		     ident_chars, '\0');
 		if (ident_type == '\0') return;
@@ -4696,7 +4696,7 @@ struct monst *shkp;
     if (service > 0)
 	verbalize(we_offer);
     else
-	pline(Never_mind);
+	pline("%s", Never_mind);
 
     switch(service) {
 	case 0:

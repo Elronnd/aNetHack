@@ -571,7 +571,7 @@ do_look(quick)
 		monexplain[i]) {
 		need_to_look = TRUE;
 		if (!found) {
-		    Sprintf(out_str, "%c       %s", sym, an(monexplain[i]));
+		    Sprintf(out_str, "%ld       %s", sym, an(monexplain[i]));
 		    firstmatch = monexplain[i];
 		    found++;
 		} else {
@@ -595,7 +595,7 @@ do_look(quick)
 	 */
 	if (u.uswallow && from_screen && is_swallow_sym(sym)) {
 	    if (!found) {
-		Sprintf(out_str, "%c       %s", sym, mon_interior);
+		Sprintf(out_str, "%ld       %s", sym, mon_interior);
 		firstmatch = mon_interior;
 	    } else {
 		found += append_str(out_str, mon_interior);
@@ -612,7 +612,7 @@ do_look(quick)
 		    continue;
 		}
 		if (!found) {
-		    Sprintf(out_str, "%c       %s", sym, an(objexplain[i]));
+		    Sprintf(out_str, "%ld       %s", sym, an(objexplain[i]));
 		    firstmatch = objexplain[i];
 		    found++;
 		} else {
@@ -623,7 +623,7 @@ do_look(quick)
 
 	if (sym == DEF_INVISIBLE) {
 	    if (!found) {
-		Sprintf(out_str, "%c       %s", sym, an(invisexplain));
+		Sprintf(out_str, "%ld       %s", sym, an(invisexplain));
 		firstmatch = invisexplain;
 		found++;
 	    } else {
@@ -645,10 +645,10 @@ do_look(quick)
 
 		if (!found) {
 		    if (is_cmap_trap(i)) {
-			Sprintf(out_str, "%c       a trap", sym);
+			Sprintf(out_str, "%ld       a trap", sym);
 			hit_trap = TRUE;
 		    } else {
-			Sprintf(out_str, "%c       %s", sym,
+			Sprintf(out_str, "%ld       %s", sym,
 				article == 2 ? the(x_str) :
 				article == 1 ? an(x_str) : x_str);
 		    }
@@ -672,7 +672,7 @@ do_look(quick)
 	    x_str = def_warnsyms[i].explanation;
 	    if (sym == (from_screen ? warnsyms[i] : def_warnsyms[i].sym)) {
 		if (!found) {
-			Sprintf(out_str, "%c       %s",
+			Sprintf(out_str, "%ld       %s",
 				sym, def_warnsyms[i].explanation);
 			firstmatch = def_warnsyms[i].explanation;
 			found++;
@@ -691,7 +691,7 @@ do_look(quick)
 	if (skipped_venom && found < 2) {
 	    x_str = objexplain[VENOM_CLASS];
 	    if (!found) {
-		Sprintf(out_str, "%c       %s", sym, an(x_str));
+		Sprintf(out_str, "%ld       %s", sym, an(x_str));
 		firstmatch = x_str;
 		found++;
 	    } else {
@@ -703,7 +703,7 @@ do_look(quick)
 	if (iflags.bouldersym && sym == iflags.bouldersym) {
 	    if (!found) {
 		firstmatch = "boulder";
-		Sprintf(out_str, "%c       %s", sym, an(firstmatch));
+		Sprintf(out_str, "%ld       %s", sym, an(firstmatch));
 		found++;
 	    } else {
 		found += append_str(out_str, "boulder");
