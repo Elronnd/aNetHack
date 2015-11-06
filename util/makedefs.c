@@ -446,7 +446,6 @@ make_version()
 #endif
 			| (1L <<  2)
 		/* monsters (5..9) */
-/* For KOPS, taking out an #ifdef --Elronnd */
 			| (1L <<  6)
 #ifdef MAIL
 			| (1L <<  7)
@@ -527,6 +526,9 @@ const char *build_date;
 #ifdef PORT_SUB_ID
     subbuf[0] = ' ';
     Strcpy(&subbuf[1], PORT_SUB_ID);
+#endif
+#ifdef ALPHA
+    Strcat(subbut, " Alpha");
 #endif
 #ifdef BETA
     Strcat(subbuf, " Beta");
@@ -652,7 +654,6 @@ static const char *build_opts[] = {
 #ifdef REALTIME_ON_BOTL
                 "elapsed time on status line",
 #endif
-		"dungeon map overview patch",
 #ifdef ELBERETH
 		"Elbereth",
 #endif
@@ -738,11 +739,9 @@ static const char *build_opts[] = {
 #  endif
 # endif
 #endif
-		"seduction",
 #ifdef SHELL
 		"shell command",
 #endif
-		"sinks",
 #ifdef SUSPEND
 		"suspend command",
 #endif

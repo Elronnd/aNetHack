@@ -8,7 +8,8 @@
 #include <stdio.h>
 
 
-/* #define BETA	*/	/* if a beta-test copy	[MRS] */
+/* #defina ALPHA */	/* if an alpha-test copy --Elronnd */
+#define BETA		/* if a beta-test copy	[MRS] */
 
 /*
  * Files expected to exist in the playground directory.
