@@ -238,7 +238,7 @@ WINOBJ = $(WINTTYOBJ) $(WINCURSESOBJ)
 # WINTTYLIB = -ltermcap
 # WINTTYLIB = -lcurses
 # WINTTYLIB = -lcurses16
-WINTTYLIB = -lncurses
+WINTTYLIB = -lncursesw
 # WINTTYLIB = -ltermlib
 #
 # libraries for X11

@@ -441,8 +441,8 @@ static glyph_t dec_graphics[MAXPCHARS] = {
 	0xe7,	/* S_tree:	meta-g, plus-or-minus */
 	0xfe,	/* S_room:	meta-~, centered dot */
 	g_FILLER(S_stone),	/* S_darkroom:  meta-~, centered dot */
-/*20*/	g_FILLER(S_corr),
-	g_FILLER(S_litcorr),
+	0x2591, /* S_corr	LIGHT SHADE */
+	0x2592, /* S_litcorr	MEDIUM SHADE */
 	g_FILLER(S_upstair),
 	g_FILLER(S_dnstair),
 	0xf9,	/* S_upladder:	meta-y, greater-than-or-equals */
@@ -836,7 +836,12 @@ int gr_set_flag;
 #endif
 #ifdef CURSES_GRAPHICS
     case CURS_GRAPHICS:
+# ifdef UTF8_GLYPHS
+	    assign_graphics(utf8_graphics, SIZE(utf8_graphics), MAXPCHARS, 0);
+	    iflags.UTF8graphics = TRUE;
+# else
 	    assign_graphics((glyph_t *)0, 0, MAXPCHARS, 0);
+# endif /* UTF8_GLYPHS */
         iflags.cursesgraphics = TRUE;
 	    iflags.IBMgraphics = FALSE;
 	    iflags.DECgraphics = FALSE;

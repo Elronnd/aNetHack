@@ -1,4 +1,5 @@
-#include "curses.h"
+#define _XOPEN_SOURCE_EXTENDED 1
+#include <ncursesw/curses.h>
 #include "hack.h"
 #include "patchlevel.h"
 #include "color.h"
@@ -507,10 +508,6 @@ void curses_print_glyph(winid wid, XCHAR_P x, XCHAR_P y, int glyph)
     if ((special & MG_DETECT) && iflags.use_inverse)
 	{
 	    attr = A_REVERSE;
-	}
-	if (iflags.cursesgraphics)
-	{
-	    ch = curses_convert_glyph(ch, glyph);
 	}
 
 	if (wid == NHW_MAP) {

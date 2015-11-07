@@ -1,4 +1,5 @@
-#include "curses.h"
+#define _XOPEN_SOURCE_EXTENDED 1
+#include <ncursesw/curses.h>
 #include "hack.h"
 #include "wincurs.h"
 #include "cursmisc.h"
@@ -456,72 +457,6 @@ boolean curses_is_text(winid wid)
     {
         return FALSE;
     }
-}
-
-
-/* Replace certain characters with portable drawing characters if
-cursesgraphics option is enabled */
-
-int curses_convert_glyph(int ch, int glyph)
-{
-    int symbol;
-    
-#ifdef REINCARNATION
-    if (Is_rogue_level(&u.uz))
-    {
-        return ch;
-    }
-#endif
-    
-    /* Save some processing time by returning if the glyph represents
-    an object that we don't have custom characters for */
-    if (!glyph_is_cmap(glyph))
-    {
-        return ch;
-    }
-    
-    symbol = glyph_to_cmap(glyph);
-    
-    /* If user selected a custom character for this object, don't
-    override this. */
-    if (((glyph_is_cmap(glyph)) && (ch != showsyms[symbol])))
-    {
-        return ch;
-    }
-
-    switch (symbol)
-    {
-        case S_vwall:
-            return ACS_VLINE;
-        case S_hwall:
-            return ACS_HLINE;
-        case S_tlcorn:
-            return ACS_ULCORNER;
-        case S_trcorn:
-            return ACS_URCORNER;
-        case S_blcorn:
-            return ACS_LLCORNER;
-        case S_brcorn:
-            return ACS_LRCORNER;
-        case S_crwall:
-            return ACS_PLUS;
-        case S_tuwall:
-            return ACS_BTEE;
-        case S_tdwall:
-            return ACS_TTEE;
-        case S_tlwall:
-            return ACS_RTEE;
-        case S_trwall:
-            return ACS_LTEE;
-        case S_tree:
-            return ACS_PLMINUS;
-        case S_corr:
-            return ACS_CKBOARD;
-        case S_litcorr:
-            return ACS_CKBOARD;
-    }
-
-	return ch;
 }
 
 

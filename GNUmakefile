@@ -88,7 +88,7 @@ GAME_O = $(SRCOBJ:%.o=src/%.o) $(SYSUNIXOBJ:%.o=sys/unix/%.o)	\
          $(WINTTYOBJ:%.o=win/tty/%.o)				\
          $(WINCURSESOBJ:%.o=win/curses/%.o)
 src/$(GAME): $(GAME_O)
-	$(CC) $(LDFLAGS) $^ $(LDLIBS) -lncurses -o $@
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -lncursesw -o $@
 AUTO_BIN += src/$(GAME)
 
 RECOVER_O = util/recover_main.o src/recover.o

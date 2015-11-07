@@ -1,4 +1,5 @@
-#include "curses.h"
+#define _XOPEN_SOURCE_EXTENDED 1
+#include <ncursesw/curses.h>
 #include "hack.h"
 #include "wincurs.h"
 #include "cursinit.h"

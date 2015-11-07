@@ -1,4 +1,6 @@
-#include "curses.h"
+#define _XOPEN_SOURCE_EXTENDED 1
+#include <ncursesw/curses.h>
+#include <curses.h>
 #include "hack.h"
 #include "wincurs.h"
 #include "curswins.h"
@@ -44,6 +46,7 @@ static nethack_wid *nhwids = NULL;  /* NetHack wid array */
 static boolean is_main_window(winid wid);
 
 static void write_char(WINDOW *win, int x, int y, nethack_char ch);
+static void write_wchar(WINDOW *win, int x, int y, nethack_char ch);
 
 static void clear_map(void);
 
@@ -425,7 +428,7 @@ void curses_putch(winid wid, int x, int y, int ch, int color, int attr)
             y++;
         }
 
-        write_char(mapwin, x - sx, y - sy, nch);
+	write_wchar(mapwin, x - sx, y - sy, nch);
     }
 
     wrefresh(mapwin);
@@ -589,6 +592,24 @@ static void write_char(WINDOW *win, int x, int y, nethack_char nch)
 #else
     mvwaddch(win, y, x, nch.ch);
 #endif
+    curses_toggle_color_attr(win, nch.color, nch.attr, OFF);
+}
+
+/* Unconditionally write a single wide character to a window at the given
+coordinates without a refresh.  Currently only used for the map. */
+static void write_wchar(WINDOW *win, int x, int y, nethack_char nch)
+{
+    static cchar_t wide = {0};
+    static boolean init = false;
+    if (!init) {
+	wide.attr = 0;
+	int i;
+	for (i = 0; i < CCHARW_MAX; i++) wide.chars[i] = 0;
+	init = true;
+    }
+    curses_toggle_color_attr(win, nch.color, nch.attr, ON);
+    wide.chars[0] = nch.ch;
+    mvwadd_wch(win, y, x, &wide);
     curses_toggle_color_attr(win, nch.color, nch.attr, OFF);
 }
 
