@@ -124,32 +124,14 @@ void curses_update_stats(boolean redraw)
     if (redraw)
     {
         orient = curses_get_window_orientation(STATUS_WIN);
-
-        if ((orient == ALIGN_RIGHT) || (orient == ALIGN_LEFT))
-        {
-            horiz = FALSE;
-        }
-        else
-        {
-            horiz = TRUE;
-        }
+	horiz = ((orient != ALIGN_RIGHT) && (orient != ALIGN_LEFT));
     }
     
-    if (horiz)
-    {
-        if (term_cols >= 80)
-        {
-            labels = NORMAL_LABELS;
-        }
-        else
-        {
-            labels = COMPACT_LABELS;
-        }
-    }
-    else
-    {
-        labels = WIDE_LABELS;
-    }
+    labels = horiz
+	? ((term_cols >= 80)
+		? NORMAL_LABELS
+		: COMPACT_LABELS)
+	: WIDE_LABELS;
     
     if (labels != prev_labels)
     {
@@ -201,11 +183,43 @@ void curses_update_stats(boolean redraw)
         sx += strlen(prevname.label);
     }
     
+    int nameln = strlen(prevname.txt);
     if (labels != COMPACT_LABELS)
     {
-        color_stat(prevname, ON);
-        mvwaddstr(win, sy, sx, prevname.txt);
-        color_stat(prevname, OFF);
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	/* Draw out the title as the botl hitpointbar does, just with curses */
+	if (iflags.hitpointbar) {
+	    int normal_color = CLR_GRAY;
+	    int normal_attr = A_NORMAL;
+	    curses_toggle_color_attr(win, normal_color, normal_attr, ON);
+	    mvwaddstr(win, sy, sx++, "[");
+	    curses_toggle_color_attr(win, normal_color, normal_attr, OFF);
+
+	    int bar_length = nameln;
+	    int filledbar = ((uhp() < 0) ? 0 : uhp()) * bar_length / uhpmax();
+	    struct color_option hp_color = percentage_color_of(uhp(), uhpmax(), hp_colors);
+	    int style = iflags.use_inverse ? A_REVERSE : normal_attr;
+
+	    curses_toggle_color_attr(win, hp_color.color, style, ON);
+	    mvwaddnstr(win, sy, sx, prevname.txt, filledbar);
+	    sx += filledbar;
+	    curses_toggle_color_attr(win, hp_color.color, style, OFF);
+	    curses_toggle_color_attr(win, normal_color, normal_attr, ON);
+	    if (filledbar < bar_length) {
+		int over = bar_length - filledbar;
+		mvwaddnstr(win, sy, sx, prevname.txt + filledbar, over);
+		sx += over;
+	    }
+	    mvwaddstr(win, sy, sx++, "]");
+	    sx -= nameln; /* Make things nice for the original horiz below */
+	    curses_toggle_color_attr(win, normal_color, normal_attr, ON);
+	} else
+#endif /* STATUS_COLORS && TEXTCOLOR */
+	{
+	    color_stat(prevname, ON);
+	    mvwaddstr(win, sy, sx, prevname.txt);
+	    color_stat(prevname, OFF);
+	}
     }
 
     if (horiz)
