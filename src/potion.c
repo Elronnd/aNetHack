@@ -930,7 +930,7 @@ register const char *txt;
 		You("have a %s feeling for a moment, then it passes.",
 		Hallucination ? "normal" : "strange");
 	else
-		pline(txt);
+		pline("%s", txt);
 
 	if(!obj)	/* e.g., crystal ball finds no traps */
 		return;

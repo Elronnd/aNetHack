@@ -1942,6 +1942,7 @@ E boolean FDECL(load_special, (const char *));
 
 /* ### spell.c ### */
 
+E void FDECL(deadbook, (struct obj *,boolean));
 #ifdef USE_TRAMPOLI
 E int NDECL(learn);
 #endif

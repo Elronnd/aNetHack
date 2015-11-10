@@ -1810,7 +1810,7 @@ recbranch_mapseen(source, dest)
 	/* branch not found, so not a real branch. */
 	if (!br) return;
   
-	if (mptr = find_mapseen(source)) {
+	if ((mptr = find_mapseen(source))) {
 		if (mptr->br && br != mptr->br)
 			impossible("Two branches on the same level?");
 		mptr->br = br;

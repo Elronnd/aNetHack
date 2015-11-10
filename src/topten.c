@@ -53,7 +53,7 @@ struct toptenentry {
 	int deathdnum, deathlev;
 	int maxlvl, hp, maxhp, deaths;
 	int ver_major, ver_minor, patchlevel;
-	int deathdate, birthdate;
+	long deathdate, birthdate;
 	int uid;
 	char plrole[ROLESZ+1];
 	char plrace[ROLESZ+1];
@@ -151,7 +151,7 @@ struct toptenentry *tt;
 	static const char fmt32[] = "%c%c %s %s%*c";
 	static const char fmt33[] = "%s %s %s %s %s %s%*c";
 #else
-	static const char fmt[] = "%d.%d.%d %ld %d %d %d %d %d %d %ld %ld %d ";
+	static const char fmt[] = "%d.%d.%d %ld %d %d %d %d %d %d %d %d %d ";
 	static const char fmt32[] = "%c%c %[^,],%[^\n]%*c";
 	static const char fmt33[] = "%s %s %s %s %[^,],%[^\n]%*c";
 #endif

@@ -50,7 +50,7 @@ while (*p != '\0')
 p++;
 break;
 case 'h':
-snprintf (p, end + 1 - p, "%ld", uhp());
+snprintf (p, end + 1 - p, "%d", uhp());
 while (*p != '\0')
 p++;
 break;

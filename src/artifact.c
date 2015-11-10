@@ -1213,6 +1213,8 @@ arti_invoke(obj)
     if(!oart || !oart->inv_prop) {
 	if(obj->otyp == CRYSTAL_BALL)
 	    use_crystal_ball(obj);
+	else if(obj->otyp == SPE_BOOK_OF_THE_DEAD)
+	    deadbook(obj, TRUE); /* deadbook() handles nothing_happens */
 	else
 	    pline("%s",nothing_happens);
 	return 1;

@@ -1413,9 +1413,7 @@ struct mkroom *croom;
  * Major level transmutation: add a set of stairs (to the Sanctum) after
  * an earthquake that leaves behind a a new topology, centered at inv_pos.
  * Assumes there are no rooms within the invocation area and that inv_pos
- * is not too close to the edge of the map.  Also assume the hero can see,
- * which is guaranteed for normal play due to the fact that sight is needed
- * to read the Book of the Dead.
+ * is not too close to the edge of the map.
  */
 void
 mkinvokearea()
@@ -1426,7 +1424,10 @@ mkinvokearea()
     register xchar i;
 
     pline_The("floor shakes violently under you!");
-    pline_The("walls around you begin to bend and crumble!");
+    if(Blind)
+      pline_The("entire dungeon seems to be tearing apart!");
+    else
+      pline_The("walls around you begin to bend and crumble!");
     display_nhwindow(WIN_MESSAGE, TRUE);
 
     mkinvpos(xmin, ymin, 0);		/* middle, before placing stairs */
@@ -1453,7 +1454,10 @@ mkinvokearea()
 	delay_output();
     }
 
-    You("are standing at the top of a stairwell leading down!");
+    if(Blind)
+	You_feel("the stones reassemble below you!");
+    else
+	You("are standing at the top of a stairwell leading down!");
     mkstairs(u.ux, u.uy, 0, (struct mkroom *)0); /* down */
     newsym(u.ux, u.uy);
     vision_full_recalc = 1;	/* everything changed */
@@ -1501,17 +1505,6 @@ int dist;
 	    obfree(otmp, (struct obj *)0);
 	}
     }
-    unblock_point(x,y);	/* make sure vision knows this location is open */
-
-    /* fake out saved state */
-    lev->seenv = 0;
-    lev->doormask = 0;
-    if(dist < 6) lev->lit = TRUE;
-    lev->waslit = TRUE;
-    lev->horizontal = FALSE;
-    viz_array[y][x] = (dist < 6 ) ?
-	(IN_SIGHT|COULD_SEE) : /* short-circuit vision recalc */
-	COULD_SEE;
 
     switch(dist) {
     case 1: /* fire traps */

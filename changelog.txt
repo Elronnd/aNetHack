@@ -35,8 +35,6 @@ Changelog for aNetHack:
 
 * Add "Water vortices", a vortex that can rust your inventory, or kill rust monsters.
 
-* Add an "applied_patches" directory, which includes the original (sometimes they had to be modified to work with this variant) versions of patches and a short README.
-
 * Add the dungeon overview patch
 
 * Add the Elbereth status line patch
@@ -54,3 +52,29 @@ Changelog for aNetHack:
 * Incorperate shopkeeper services from Slash'EM
 
 * Add sokoban levels from NetHack Fourk
+
+* Apply the dark background patch
+
+* Apply the glyphcolor patch
+
+* Autopickup exceptions can except items in shops
+
+* Remove the "Note: Please use #quit..." message
+
+* Add a message when a secret passage is discovered
+
+* Add door auto-opening from UnNetHack.  Doesn't work on a diagonal
+
+* Add the pilesize patch
+
+* Add "Lev" as a status on the status line
+
+* Patch curses to work with UTF8graphics and hitpointbar
+
+* Fix for C343-162, Magicbane hit messages
+
+* Trying to read a dull spellbook usually makes you fall asleep.  The number o f turns you sleep is dependant on the spell's level.
+
+* Add monsters: snow ant, the cold version of the fire ant -- from Slash'EM, the electric ant -- the shock version of the fire ant, and the water vortex -- rusts inventory when engulfed
+
+* Apply the invoke book of the dead patch
