@@ -1769,10 +1769,68 @@ u_gname()  /* returns the name of the player's deity */
     return align_gname(u.ualign.type);
 }
 
+const char * const hallu_gods[] = {
+	"Bill Gates",
+	"Britney Spears",
+	"Mother Teresa",
+	"George W. Bush",
+	"Albert Einstein",
+	"Jackie Chan",
+
+	"Speedy Gonzales",
+	"Homer Simpson",
+	"Dagobert Duck",
+	"Xena",
+	"Super Mario",
+	"Donkey Kong",
+	"Jack Bauer",
+	"the blue Power Ranger",
+	"Mr. Spock",
+	"Your mom",
+
+	"the universe",
+	"Capitalism",
+	"Communism",
+	"Burger King",
+	"McDonald's",
+	"something",
+	"the U.N.O.",
+	"the Flying Spaghetti Monster",
+	"the Invisible Pink Unicorn",
+
+	"the gnome with the wand of death",
+	"the DevTeam",
+	"paxed",
+	"bhaak",
+	"Soviet5lo",
+	"tungtn",
+	"Bluescreenofdeath",
+	"Elronnd",
+	"Dion Nicolaas",
+	"marvin",
+	"Dudley",
+	"the RNG",
+	"Tariru",
+	"stth",
+	"Adeon",
+	"mrivan",
+	"muad",
+	"speedycat7",
+	"stenno",
+	"Eidolos",
+	"dograt",
+	"rast",
+	"DeathOnAStick"
+
+};
+
 const char *
 align_gname(alignment)
 aligntyp alignment;
 {
+	if (Hallucination) {
+		return hallu_gods[rn2(SIZE(hallu_gods))];
+	}
     const char *gnam;
 
     switch (alignment) {
