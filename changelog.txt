@@ -90,3 +90,5 @@ Changelog for aNetHack:
 * Zapping dragon scale mail makes it revert to dragon scales
 
 * Allows monks to have jumping kicks
+
+* Apply the harmonic scoring patch
