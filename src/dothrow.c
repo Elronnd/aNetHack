@@ -511,8 +511,14 @@ hurtle_step(arg, x, y)
     }
 
     if ((mon = m_at(x, y)) != 0) {
-	You("bump into %s.", a_monnam(mon));
+	You("bump into %s.%s", a_monnam(mon), 
+	    (Role_if(PM_MONK)?" HIYAHH!":""));
 	wakeup(mon);
+	if Role_if(PM_MONK) {
+	  kick_monster(x,y,FALSE);
+	  mon->mstun = 1;
+//	  mon->mhp -= 15;
+	}
 	return FALSE;
     }
     if ((u.ux - x) && (u.uy - y) &&

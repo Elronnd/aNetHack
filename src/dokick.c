@@ -15,7 +15,7 @@ static NEARDATA const char *gate_str;
 extern boolean notonhead;	/* for long worms */
 
 STATIC_DCL void FDECL(kickdmg, (struct monst *, BOOLEAN_P));
-STATIC_DCL void FDECL(kick_monster, (XCHAR_P, XCHAR_P));
+/* STATIC_DCL void FDECL(kick_monster, (XCHAR_P, XCHAR_P, BOOLEAN_P)); */
 STATIC_DCL int FDECL(kick_object, (XCHAR_P, XCHAR_P));
 STATIC_DCL char *FDECL(kickstr, (char *));
 STATIC_DCL void FDECL(otransit_msg, (struct obj *, BOOLEAN_P, long));
@@ -114,9 +114,10 @@ register boolean clumsy;
 	    use_skill(kick_skill, 1);
 }
 
-STATIC_OVL void
-kick_monster(x, y)
+/*STATIC_OVL*/ void
+kick_monster(x, y, check)
 register xchar x, y;
+boolean check;
 {
 	register boolean clumsy = FALSE;
 	register struct monst *mon = m_at(x, y);
@@ -124,7 +125,7 @@ register xchar x, y;
 
 	bhitpos.x = x;
 	bhitpos.y = y;
-	if (attack_checks(mon, (struct obj *)0)) return;
+	if (check && attack_checks(mon, (struct obj *)0)) return;
 	setmangry(mon);
 
 	/* Kick attacks by kicking monsters are normal attacks, not special.
@@ -743,7 +744,7 @@ dokick()
 		mdat = mtmp->data;
 		if (!mtmp->mpeaceful || !canspotmon(mtmp))
 		    flags.forcefight = TRUE; /* attack even if invisible */
-		kick_monster(x, y);
+		kick_monster(x, y, TRUE);
 		flags.forcefight = FALSE;
 		/* see comment in attack_checks() */
 		if (!DEADMONSTER(mtmp) &&

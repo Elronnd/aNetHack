@@ -78,3 +78,15 @@ Changelog for aNetHack:
 * Add monsters: snow ant, the cold version of the fire ant -- from Slash'EM, the electric ant -- the shock version of the fire ant, and the water vortex -- rusts inventory when engulfed
 
 * Apply the invoke book of the dead patch
+
+* Add hallucinatory gods
+
+* Add damage messages for healers
+
+* Add "Held" as a status on the status line
+
+* Apply $ to flip a coin
+
+* Zapping dragon scale mail makes it revert to dragon scales
+
+* Allows monks to have jumping kicks
