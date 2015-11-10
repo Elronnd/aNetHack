@@ -511,6 +511,13 @@ bot2()
 #else
   Strcat(nb = eos(nb), " Lev");
 #endif
+  if(u.ustuck && !u.uswallow)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	add_colored_text("Held", newbot2);
+#else
+ Strcat(nb = eos(nb), " Held");
+#endif
+
   if(Confusion)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
       add_colored_text("Conf", newbot2);
