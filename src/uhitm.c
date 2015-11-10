@@ -399,7 +399,8 @@ register struct monst *mtmp;
 			aobjnam(uwep, (char *)0));
 		else if (!cantwield(youmonst.data))
 		    You("begin %sing monsters with your %s %s.",
-			Role_if(PM_MONK) ? "strik" : "bash",
+			Role_if(PM_MONK) ? "strik" : 
+			Role_if(PM_ROGUE)? "robb" : "bash",
 			uarmg ? "gloved" : "bare",	/* Del Lamb */
 			makeplural(body_part(HAND)));
 	    }
@@ -549,6 +550,7 @@ int thrown;
 	boolean get_dmg_bonus = TRUE;
 	boolean ispoisoned = FALSE, needpoismsg = FALSE, poiskilled = FALSE;
 	boolean silvermsg = FALSE, silverobj = FALSE;
+	boolean thievery = FALSE;
 	boolean valid_weapon_attack = FALSE;
 	boolean unarmed = !uwep && !uarm && !uarms;
 #ifdef STEED
@@ -572,6 +574,7 @@ int thrown;
 	    else
 		tmp = rnd(2);
 	    valid_weapon_attack = (tmp > 1);
+	    thievery = Role_if(PM_ROGUE) && !flags.forcefight && !Upolyd;
 	    /* blessed gloves give bonuses when fighting 'bare-handed' */
 	    if (uarmg && uarmg->blessed && (is_undead(mdat) || is_demon(mdat)))
 		tmp += rnd(4);
@@ -1002,7 +1005,7 @@ int thrown;
 #endif
 
 	/* VERY small chance of stunning opponent if unarmed. */
-	if (unarmed && tmp > 1 && !thrown && !obj && !Upolyd) {
+	if (unarmed && tmp > 1 && !thrown && !obj && !Upolyd && !thievery) {
 	    if (rnd(100) < P_SKILL(P_BARE_HANDED_COMBAT) &&
 			!bigmonst(mdat) && !thick_skinned(mdat)) {
 		if (canspotmon(mon))
@@ -1018,7 +1021,12 @@ int thrown;
 	    }
 	}
 
-	if (!already_killed) mon->mhp -= tmp;
+	if (thievery){
+		You("try to steal from %s.", mon_nam(mon));
+		steal_it(mon, &youmonst.data->mattk[0]);
+		hittxt = TRUE;
+	} else if (!already_killed) mon->mhp -= tmp;
+
 	/* adjustments might have made tmp become less than what
 	   a level draining artifact has already done to max HP */
 	if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
@@ -1261,8 +1269,13 @@ struct attack *mattk;
 		    mon_nam(mdef), mhe(mdef), mhis(mdef));
 	}
 
+	/* Rogue uses thievery Skill */
+	if(!Upolyd && (rn2(5) > P_SKILL(P_THIEVERY))) { 
+	    You("fail badly.");
+	    return;
+	}
+
 	while ((otmp = mdef->minvent) != 0) {
-	    if (!Upolyd) break;		/* no longer have ability to steal */
 	    /* take the object away from the monster */
 	    obj_extract_self(otmp);
 	    if ((unwornmask = otmp->owornmask) != 0L) {
@@ -1300,6 +1313,7 @@ struct attack *mattk;
 	    }
 
 	    if (!stealoid) break;	/* only taking one item */
+	    if (!Upolyd) break;		/* no longer have ability to steal */
 	}
 }
 

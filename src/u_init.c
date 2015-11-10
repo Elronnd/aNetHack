@@ -405,7 +405,7 @@ static const struct def_skill Skill_R[] = {
     { P_RIDING, P_BASIC },
 #endif
     { P_TWO_WEAPON_COMBAT, P_EXPERT },
-    { P_BARE_HANDED_COMBAT, P_EXPERT },
+    { P_THIEVERY, P_MASTER },
     { P_NONE, 0 }
 };
 

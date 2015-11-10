@@ -96,3 +96,5 @@ Changelog for aNetHack:
 * Apply the changing mazes patch
 
 * Improve the travel system
+
+* Rogues can steal from monsters
