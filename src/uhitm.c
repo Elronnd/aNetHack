@@ -1092,7 +1092,7 @@ int thrown;
 				canseemon(mon))
 			    pline("%s appears confused.", Monnam(mon));
 		}
-	}
+	} if (!destroyed) wounds_message(mon);
 
 	return((boolean)(destroyed ? FALSE : TRUE));
 }
