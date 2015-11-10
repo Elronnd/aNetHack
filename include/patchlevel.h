@@ -4,16 +4,16 @@
 
 /* NetHack 3.4.3 */
 #define VERSION_MAJOR	0
-#define VERSION_MINOR	0
+#define VERSION_MINOR	1
 /*
  * PATCHLEVEL is updated for each release.
  */
-#define PATCHLEVEL	1
+#define PATCHLEVEL	0
 /*
  * Incrementing EDITLEVEL can be used to force invalidation of old bones
  * and save files.
  */
-#define EDITLEVEL	1
+#define EDITLEVEL	2
 
 #define COPYRIGHT_BANNER_A \
 "aNetHack version 0.0.0 alpha, Copyright 2015"
@@ -33,7 +33,7 @@
  * PP = patch level, ee = edit level, L = literal suffix "L",
  * with all four numbers specified as two hexadecimal digits.
  */
-#define VERSION_COMPATIBILITY 0x00000000L	/* 3.4.0-0 */
+#define VERSION_COMPATIBILITY 0x00010002L	/* 3.4.0-0 */
 
 
 /*   Old versioning information for "vanilla" as released by the devteam.    */
