@@ -1397,7 +1397,7 @@ struct obj *otmp;
 		    if (Role_if(PM_CONVICT))
 			pline("At least it's not prison food.");
 #endif /* CONVICT */
-		    more_experienced(1,0);
+		    more_experienced(1,1,0);
 		    newexplevel();
 		    /* not cannibalism, but we use similar criteria
 		       for deciding whether to be sickened by this meal */
