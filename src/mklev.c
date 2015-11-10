@@ -566,6 +566,7 @@ clear_level_structures()
 
 	level.flags.nfountains = 0;
 	level.flags.nsinks = 0;
+	level.flags.morph = 0;
 	level.flags.has_shop = 0;
 	level.flags.has_vault = 0;
 	level.flags.has_zoo = 0;
@@ -646,6 +647,7 @@ makelevel()
 		  (rn2(5) && u.uz.dnum == medusa_level.dnum
 			  && depth(&u.uz) > depth(&medusa_level))) {
 		    makemaz("");
+		    level.flags.morph = 1;
 		    return;
 	    }
 	}

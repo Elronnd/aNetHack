@@ -92,3 +92,5 @@ Changelog for aNetHack:
 * Allows monks to have jumping kicks
 
 * Apply the harmonic scoring patch
+
+* Apply the changing mazes patch

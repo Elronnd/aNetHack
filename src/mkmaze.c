@@ -901,6 +901,57 @@ register xchar x, y, todnum, todlevel;
 	return;
 }
 
+
+void
+changemaze()
+{
+    int cx, cy, cnt = 0;
+    struct trap* ttmp;
+    struct monst *mtmp;
+
+    int addwall = rn2(2);
+    int dir;
+
+    if (rn2(100) < 90) return;
+
+    do {
+	dir = 0;
+	cx = rn2(COLNO-5)+3;
+	cy = rn2(ROWNO-4)+3;
+	if (cnt++ > 200) return;
+	if (t_at(cx, cy) || m_at(cx, cy) || level.objects[cx][cy] || cansee(cx, cy)) continue;
+	if (IS_WALL(levl[cx][cy-1].typ)) dir += 1;
+	if (IS_WALL(levl[cx][cy+1].typ)) dir += 2;
+	if (IS_WALL(levl[cx-1][cy].typ)) dir += 4;
+	if (IS_WALL(levl[cx+1][cy].typ)) dir += 8;
+	if ((dir != 3) && (dir != 12)) continue;
+	if (addwall) {
+	    if (levl[cx][cy].typ != ROOM) continue;
+	} else {
+	    if ((levl[cx][cy].typ != VWALL) && (levl[cx][cy].typ != HWALL)) continue;
+	}
+	break;
+    } while (1);
+
+    if (addwall) {
+	if (dir == 3) {
+	    levl[cx][cy].typ = VWALL;
+	} else {
+	    levl[cx][cy].typ = HWALL;
+	}
+	block_point(cx,cy);
+    } else {
+	levl[cx][cy].typ = ROOM;
+	unblock_point(cx,cy);
+    }
+    newsym(cx,cy);
+    wallification(cx-1, cy-1, cx+1, cy+1);
+    You_hear("a deep rumbling sound.");
+}
+
+
+
+
 /*
  * Special waterlevel stuff in endgame (TH).
  *

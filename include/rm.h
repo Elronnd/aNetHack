@@ -451,6 +451,7 @@ struct damage {
 struct levelflags {
 	uchar	nfountains;		/* number of fountains on level */
 	uchar	nsinks;			/* number of sinks on the level */
+	uchar   morph;
 	/* Several flags that give hints about what's on the level */
 	Bitfield(has_shop, 1);
 	Bitfield(has_vault, 1);
