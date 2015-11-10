@@ -94,3 +94,5 @@ Changelog for aNetHack:
 * Apply the harmonic scoring patch
 
 * Apply the changing mazes patch
+
+* Improve the travel system
