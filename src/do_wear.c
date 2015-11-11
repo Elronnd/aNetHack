@@ -51,7 +51,6 @@ STATIC_PTR int NDECL(Shield_on);
 #ifdef TOURIST
 STATIC_PTR int NDECL(Shirt_on);
 #endif
-STATIC_DCL void NDECL(Amulet_on);
 STATIC_DCL void FDECL(Ring_off_or_gone, (struct obj *, BOOLEAN_P));
 STATIC_PTR int FDECL(select_off, (struct obj *));
 STATIC_DCL struct obj *NDECL(do_takeoff);
@@ -581,7 +580,6 @@ Armor_gone()
     return 0;
 }
 
-STATIC_OVL void
 Amulet_on()
 {
     if (!uamul) return;
