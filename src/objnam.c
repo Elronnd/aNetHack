@@ -588,9 +588,10 @@ boolean with_price;
 	 * combining both into one function taking a parameter.
 	 */
 	/* must check opoisoned--someone can have a weirdly-named fruit */
-	if (!strncmp(bp, "poisoned ", 9) && obj->opoisoned) {
-		bp += 9;
+	if(obj->opoisoned) {
 		ispoisoned = TRUE;
+		if (!strncmp(bp, "poisoned ", 9))
+			bp += 9;
 	}
 
 	if(obj->quan != 1L)
@@ -2748,6 +2749,9 @@ typfnd:
 			otmp->quan = 1L;
 			u.uconduct.wisharti++;	/* KMH, conduct */
 		}
+		/* poison Grimtooth */
+		if(otmp->oartifact==ART_GRIMTOOTH)
+			otmp->opoisoned=1;
 	}
 
 	/* more wishing abuse: don't allow wishing for certain artifacts */

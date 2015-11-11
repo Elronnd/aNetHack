@@ -1756,7 +1756,7 @@ dodip()
 	}
 #endif
 
-	if(is_poisonable(obj)) {
+	if(is_poisonable(obj) && !obj->oartifact) {
 	    if(potion->otyp == POT_SICKNESS && !obj->opoisoned) {
 		char buf[BUFSZ];
 		if (potion->quan > 1L)

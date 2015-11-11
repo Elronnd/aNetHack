@@ -34,10 +34,9 @@
 #define SPFX_DBONUS 0x1F00000L	/* attack bonus mask */
 #define SPFX_XRAY   0x2000000L	/* gives X-RAY vision to player */
 #define SPFX_REFLECT 0x4000000L /* Reflection */
-/* Arkenstone stuff --Elronnd */
+#define SPFX_BLIND  0x8000000L /* attack can blind */
 #define SPFX_CONFL  0x8000000L  /* Conflict */
 #define SPFX_AGGRM  0x10000000L /* Aggravate monster */
-/* End Arkenstone stuff --Elronnd */
 
 
 struct artifact {
