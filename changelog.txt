@@ -98,3 +98,7 @@ Changelog for aNetHack:
 * Improve the travel system
 
 * Rogues can steal from monsters
+
+* Apply L's monster spells patch
+
+* Apply the astral escape patch

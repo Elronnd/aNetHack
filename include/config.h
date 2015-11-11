@@ -389,7 +389,7 @@ typedef long glyph_t;
 #define BRADS_TEXT "Brad's"
 
 #define DUMP_LOG        /* Dump game end information to a file */
-#define DUMP_FN "/usr/local/anethack/dumplog/%t"      /* Fixed dumpfile name, if you want
+#define DUMP_FN "/usr/local/share/anethack/dumplog"      /* Fixed dumpfile name, if you want
                                    * to prevent definition by users */
 #define DUMPMSGS 20     /* Number of latest messages in the dump file  */
 

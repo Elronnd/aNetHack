@@ -1213,6 +1213,9 @@ arti_invoke(obj)
     if(!oart || !oart->inv_prop) {
 	if(obj->otyp == CRYSTAL_BALL)
 	    use_crystal_ball(obj);
+	else if(obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR || obj->otyp == EXPENSIVE_PLATINUM_SPELLBOUND_)
+			/* The Amulet is not technically an artifact in the usual sense... */
+			return invoke_amulet(obj);
 	else if(obj->otyp == SPE_BOOK_OF_THE_DEAD)
 	    deadbook(obj, TRUE); /* deadbook() handles nothing_happens */
 	else

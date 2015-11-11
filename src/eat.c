@@ -70,6 +70,8 @@ STATIC_DCL boolean force_save_hs;
 
 STATIC_OVL NEARDATA const char comestibles[] = { FOOD_CLASS, 0 };
 
+STATIC_OVL NEARDATA const char sacrifice_types[] = { AMULET_CLASS, FOOD_CLASS, 0 };
+
 /* Gold must come first for getobj(). */
 STATIC_OVL NEARDATA const char allobj[] = {
 	COIN_CLASS, WEAPON_CLASS, ARMOR_CLASS, POTION_CLASS, SCROLL_CLASS,
@@ -2422,6 +2424,7 @@ floorfood(verb,corpsecheck)	/* get food from floor or pack */
 	char qbuf[QBUFSZ];
 	char c;
 	boolean feeding = (!strcmp(verb, "eat"));
+	boolean sacrificing = (!strcmp(verb, "sacrifice"));
 
 	/* if we can't touch floor objects then use invent food only */
 	if (!can_reach_floor() ||
@@ -2467,6 +2470,20 @@ floorfood(verb,corpsecheck)	/* get food from floor or pack */
 		}
 	    }
 	}
+	if (sacrificing) {
+		for (otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere) {
+			if(otmp->otyp == AMULET_OF_YENDOR || otmp->otyp == FAKE_AMULET_OF_YENDOR) {
+				Sprintf(qbuf, "There %s %s here; %s %s?",
+					otense(otmp, "are"),
+					doname(otmp), verb,
+					 "it");
+				if((c = yn_function(qbuf,ynqchars,'n')) == 'y')
+					return(otmp);
+				else if(c == 'q')
+					return((struct obj *) 0);
+				}
+			}
+		}
 
 	/* Is there some food (probably a heavy corpse) here on the ground? */
 	for (otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere) {
@@ -2489,9 +2506,12 @@ floorfood(verb,corpsecheck)	/* get food from floor or pack */
 	/* We cannot use ALL_CLASSES since that causes getobj() to skip its
 	 * "ugly checks" and we need to check for inedible items.
 	 */
-	otmp = getobj(feeding ? (const char *)allobj :
-				(const char *)comestibles, verb);
+	otmp = getobj(sacrificing ? (const char *)sacrifice_types : 
+					feeding ? (const char *)allobj :
+					(const char *)comestibles, verb);
 	if (corpsecheck && otmp)
+		/* Kludge to allow Amulet of Yendor to be sacrificed on non-High altars */
+		if (otmp->otyp != AMULET_OF_YENDOR && otmp->otyp != FAKE_AMULET_OF_YENDOR) 
 	    if (otmp->otyp != CORPSE || (corpsecheck == 2 && !tinnable(otmp))) {
 		You_cant("%s that!", verb);
 		return (struct obj *)0;

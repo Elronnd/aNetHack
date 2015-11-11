@@ -85,7 +85,7 @@ static NEARDATA const char *deaths[] = {		/* the array of death */
 	"burning", "dissolving under the heat and pressure",
 	"crushed", "turned to stone", "turned into slime",
 	"genocided", "panic", "trickery",
-	"quit", "escaped", "ascended"
+	"quit", "escaped", "defied the gods then escaped", "ascended"
 };
 
 static NEARDATA const char *ends[] = {		/* "when you..." */
@@ -93,7 +93,7 @@ static NEARDATA const char *ends[] = {		/* "when you..." */
 	"burned", "dissolved in the lava",
 	"were crushed", "turned to stone", "turned into slime",
 	"were genocided", "panicked", "were tricked",
-	"quit", "escaped", "ascended"
+	"quit", "escaped", "defied the gods then escaped", "ascended"
 };
 
 extern const char * const killed_by_prefix[];	/* from topten.c */
@@ -950,7 +950,7 @@ die:
 			Strcpy(kilbuf, "quit while already on Charon's boat");
 		}
 	}
-	if (how == ESCAPED || how == PANICKED)
+	if (how == ESCAPED || how == DEFIED || how == PANICKED)
 		killer_format = NO_KILLER_PREFIX;
 
 	if (how != PANICKED) {
@@ -1007,7 +1007,7 @@ die:
 	    u.urscore += 50L * (long)(deepest - 1);
 	    if (deepest > 20)
 		u.urscore += 1000L * (long)((deepest > 30) ? 10 : deepest - 20);
-	    if (how == ASCENDED) u.urscore *= 2L;
+	    if (how == ASCENDED || how == DEFIED) u.urexp *= 2L;
 	}
 
 	if (bones_ok) {
@@ -1093,7 +1093,7 @@ die:
 	if (dump_fp) dump("", pbuf);
 #endif
 
-	if (how == ESCAPED || how == ASCENDED) {
+	if (how == ESCAPED || how == DEFIED || how == ASCENDED) {
 	    register struct monst *mtmp;
 	    register struct obj *otmp;
 	    register struct val_list *val;
@@ -1136,7 +1136,8 @@ die:
 	    }
 		Sprintf(eos(pbuf), "%s with %ld point%s,",
 			how==ASCENDED ? "went to your reward" :
-					"escaped from the dungeon",
+					(how==DEFIED ? "defied the Gods then escaped from the dungeon" :
+					"escaped from the dungeon"),
 			u.urscore, plur(u.urscore));
 #ifdef DUMP_LOG
 	    if (dump_fp) dump("", pbuf);

@@ -580,6 +580,7 @@ Armor_gone()
     return 0;
 }
 
+void
 Amulet_on()
 {
     if (!uamul) return;

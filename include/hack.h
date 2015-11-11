@@ -81,7 +81,8 @@
 #define TRICKED		12
 #define QUIT		13
 #define ESCAPED		14
-#define ASCENDED	15
+#define DEFIED	15
+#define ASCENDED	16
 
 #include "align.h"
 #include "dungeon.h"

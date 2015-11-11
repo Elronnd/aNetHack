@@ -561,7 +561,7 @@ int spellnum;
            pline_The("acid gets into your %s!", eyecount(youmonst.data) == 1 ?
                  body_part(EYE) : makeplural(body_part(EYE)));
            make_blinded((long)rnd(Acid_resistance ? 10 : 50),FALSE);
-           if (!Blind) Your(vision_clears);
+           if (!Blind) Your("%s", vision_clears);
     }
        /* TODO: corrode floor objects */
        break;
@@ -608,7 +608,7 @@ int spellnum;
        if (!resists_blnd(&youmonst)) {
            You("are blinded by the flash!");
            make_blinded((long)rnd(100),FALSE);
-           if (!Blind) Your(vision_clears);
+           if (!Blind) Your("%s", vision_clears);
         }
 	break;
     }
@@ -1163,11 +1163,11 @@ int spellnum;
        if ((levl[u.ux][u.uy].typ <= IRONBARS || levl[u.ux][u.uy].typ > ICE ||
                t_at(u.ux,u.uy) || amorphous(youmonst.data) ||
                is_whirly(youmonst.data) || flaming(youmonst.data) ||
-               unsolid(youmonst.data) || uwep && uwep->oartifact == ART_STING ||
+               unsolid(youmonst.data) || (uwep && uwep->oartifact == ART_STING) ||
                ACURR(A_STR) >= 18) && spellnum == MAKE_WEB)
            return TRUE;
        /* don't summon spheres when one type is gone */
-       if (spellnum == SUMMON_SPHERE &&
+       if ((spellnum == SUMMON_SPHERE) &&
                (mvitals[PM_FLAMING_SPHERE].mvflags & G_GONE) ||
                (mvitals[PM_FREEZING_SPHERE].mvflags & G_GONE) ||
                (mvitals[PM_SHOCKING_SPHERE].mvflags & G_GONE))

@@ -94,7 +94,7 @@ STATIC_DCL void FDECL(nsb_unmung_line,(char*));
 NEARDATA const char * const killed_by_prefix[] = {
 	"killed by ", "choked on ", "poisoned by ", "died of ", "drowned in ",
 	"burned by ", "dissolved in ", "crushed to death by ", "petrified by ",
-	"turned to slime by ", "killed by ", "", "", "", "", ""
+	"turned to slime by ", "killed by ", "", "", "", "", "", ""
 };
 
 static winid toptenwin = WIN_ERR;
@@ -151,7 +151,7 @@ struct toptenentry *tt;
 	static const char fmt32[] = "%c%c %s %s%*c";
 	static const char fmt33[] = "%s %s %s %s %s %s%*c";
 #else
-	static const char fmt[] = "%d.%d.%d %ld %d %d %d %d %d %d %d %d %d ";
+	static const char fmt[] = "%d.%d.%d %ld %d %d %d %d %d %d %ld %ld %d ";
 	static const char fmt32[] = "%c%c %[^,],%[^\n]%*c";
 	static const char fmt33[] = "%s %s %s %s %[^,],%[^\n]%*c";
 #endif
@@ -810,7 +810,11 @@ boolean so;
 		Sprintf(eos(linebuf), "-%s ", t1->plalign);
 	else
 		Strcat(linebuf, " ");
-	if (!strncmp("escaped", t1->death, 7)) {
+	if (!strncmp("defied", t1->death, 6)) {
+	    Sprintf(eos(linebuf), "defied the Gods then escaped the dungeon %s",
+		    !strncmp(" (", t1->death + 7, 2) ? t1->death + 7 + 2 : "");
+	    second_line = FALSE;
+	} else if (!strncmp("escaped", t1->death, 7)) {
 	    Sprintf(eos(linebuf), "escaped the dungeon %s[max level %d]",
 		    !strncmp(" (", t1->death + 7, 2) ? t1->death + 7 + 2 : "",
 		    t1->maxlvl);
