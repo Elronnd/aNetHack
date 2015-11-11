@@ -655,6 +655,36 @@ wiz_mon_polycontrol()
     return 0;
 }
 
+/* #give - give an item in your inventory to any monster */
+STATIC_PTR int
+wiz_dogive()
+{
+    char invlet;
+    struct obj *invobj;
+    coord cc;
+    struct monst *mtmp;
+
+    invlet = display_inventory(NULL, TRUE);
+    if (!invlet) return 0;
+    for (invobj = invent; invobj; invobj = invobj->nobj)
+	if (invobj->invlet == invlet) {
+	    pline("Pick a monster on the map to give %s to.", xname(invobj));
+
+	    cc.x = u.ux;
+	    cc.y = u.uy;
+
+	    if (getpos(&cc, TRUE, "a monster") < 0) return 0;
+
+	    if ((mtmp = m_at(cc.x, cc.y))) {
+		obj_extract_self(invobj);
+		(void) mpickobj(mtmp, invobj);
+	    }
+	    break;
+	}
+
+    return 0;
+}
+
 /* #levelchange command - adjust hero's experience level */
 STATIC_PTR int
 wiz_level_change()
@@ -2050,6 +2080,7 @@ struct ext_func_tab extcmdlist[] = {
  	 */
 	{(char *)0, (char *)0, donull, TRUE}, /* #levelchange */
 	{(char *)0, (char *)0, donull, TRUE}, /* #lightsources */
+	{(char *)0, (char *)0, donull, TRUE}, /* #give */
 #ifdef DEBUG_MIGRATING_MONS
 	{(char *)0, (char *)0, donull, TRUE}, /* #migratemons */
 #endif
@@ -2082,6 +2113,7 @@ struct ext_func_tab extcmdlist[] = {
 
 #if defined(WIZARD)
 static struct ext_func_tab debug_extcmdlist[] = {
+	{"give", "give an item to a monster", wiz_dogive, IFBURIED, AUTOCOMPLETE},
 	{"levelchange", "change experience level", wiz_level_change, IFBURIED, AUTOCOMPLETE},
 	{"lightsources", "show mobile light sources", wiz_light_sources, IFBURIED, AUTOCOMPLETE},
 #ifdef DEBUG_MIGRATING_MONS

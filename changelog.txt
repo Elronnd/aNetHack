@@ -125,3 +125,10 @@ Changelog for aNetHack:
 * Pets can get satiated, and will not eat if satiated.  Intelligent pets will stockpile food
 
 * Pets can use projectiles
+
+* The probability of a given room's being dark is dependent on the phase of
+the moon
+
+* Monsters can use bags
+
+* New wizard mode command, #give, to give an item to any monster

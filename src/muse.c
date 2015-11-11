@@ -1577,7 +1577,8 @@ struct monst *mtmp;
 #define MUSE_WAN_SPEED_MONSTER 7
 #define MUSE_BULLWHIP 8
 #define MUSE_POT_POLYMORPH 9
-#define MUSE_SCR_REMOVE_CURSE 10
+#define MUSE_BAG 10
+#define MUSE_SCR_REMOVE_CURSE 11
 
 boolean
 find_misc(mtmp)
@@ -1700,6 +1701,13 @@ struct monst *mtmp;
 			        m.has_misc = MUSE_SCR_REMOVE_CURSE;
 			    } 
 			}
+		}
+		nomore(MUSE_BAG);
+		if(Is_container(obj) && obj->otyp != BAG_OF_TRICKS && !rn2(5)
+		   && !m.has_misc && Has_contents(obj)
+		   && !obj->olocked && !obj->otrapped) {
+			m.misc = obj;
+			m.has_misc = MUSE_BAG;
 		}
 	}
 	return((boolean)(!!m.has_misc));
@@ -1828,6 +1836,35 @@ skipmsg:
 		if (oseen) makeknown(POT_POLYMORPH);
 		m_useup(mtmp, otmp);
 		return 2;
+	case MUSE_BAG:
+	    {
+		struct obj *xobj;
+		int count = 1;
+
+		if (Is_mbag(otmp) && otmp->cursed) {
+		    /* cursed bag of holding; items may vanish */
+		    struct obj *currobj;
+		    for (xobj = otmp->cobj; xobj; xobj = currobj) {
+			currobj = xobj->nobj;
+			if (!rn2(13)) {
+			    obj_extract_self(xobj);
+			    obfree(xobj, (struct obj *)0);
+			}
+		    }
+		}
+
+		for (xobj = otmp->cobj; xobj; xobj = xobj->nobj) count++;
+		count = rn2(count);
+		for (xobj = otmp->cobj; xobj && count; xobj = xobj->nobj) count--;
+		if (xobj && can_carry(mtmp, xobj)) {
+		    if (vismon)
+			pline("%s rummages through something.", Monnam(mtmp));
+		    obj_extract_self(xobj);
+		    (void) mpickobj(mtmp, xobj);
+		    return 2;
+		}
+	    }
+	    break;
 	case MUSE_POLY_TRAP:
 		if (vismon)
 		    pline("%s deliberately %s onto a polymorph trap!",
