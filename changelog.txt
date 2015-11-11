@@ -119,3 +119,5 @@ Changelog for aNetHack:
 	* Vorpal Blade now does +d8 to damage, instead of the ridiculously low +1.
 	* The Tsurugi of Muramasa now does double damage instead of +d8. This puts it in the running for the most powerful weapon in the game, which is where it should be. The fact that it is a two-handed weapon balances it somewhat.
 	* Grimtooth is now a (permanantly) poisoned weapon. This makes it somewhat useful in the early game (instead of worthless like it is now), but not so much in the late game, where most of the tougher monsters are poison resistant. 
+
+* gremlins can remove more intrinsics

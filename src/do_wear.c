@@ -674,7 +674,7 @@ Amulet_off()
 		break;
 	case AMULET_OF_RESTFUL_SLEEP:
 		setworn((struct obj *)0, W_AMUL);
-		if (!ESleeping)
+		if (!ESleeping && !(HSleeping & INTRINSIC))
 			HSleeping = 0;
 		return;
 	case AMULET_OF_YENDOR:
