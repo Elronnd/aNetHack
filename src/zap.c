@@ -804,6 +804,17 @@ register struct obj *obj;
 	}
 }
 
+boolean cancellable(obj)
+register struct obj *obj;
+{
+   return objects[obj->otyp].oc_magic
+       || (obj->spe && (obj->oclass == ARMOR_CLASS ||
+                        obj->oclass == WEAPON_CLASS || is_weptool(obj)))
+       || obj->otyp == POT_ACID 
+       || obj->otyp == POT_SICKNESS;
+
+}
+
 /* cancel obj, possibly carried by you or a monster */
 void
 cancel_item(obj)
@@ -937,6 +948,7 @@ register struct obj *obj;
 #endif
 	return;
 }
+
 
 /* Remove a positive enchantment or charge from obj,
  * possibly carried by you or a monster
@@ -2282,6 +2294,36 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 		find_ac();
 	    }
 	}
+        else {  /* select one random item to cancel */
+	    struct obj *otmp;
+            int count = 0;
+ 
+            for (otmp = (youdefend ? invent : mdef->minvent); 
+                 otmp; otmp = otmp->nobj) {
+                 if (cancellable(otmp)) {
+			count++;
+		 }
+            }
+
+            if (count > 0) {
+		int o = rnd(count);
+            
+                for (otmp = (youdefend ? invent : mdef->minvent);
+                    otmp; otmp = otmp->nobj) {
+                    if (cancellable(otmp)) {
+			o--;
+                        if (o == 0) {
+				cancel_item(otmp);
+ 				break;
+                        }
+                    }
+                }
+                if (youdefend) {
+                   flags.botl = 1; /* potential AC change */
+                   find_ac();
+                }
+	    }
+        }
 
 	/* now handle special cases */
 	if (youdefend) {
