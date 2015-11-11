@@ -120,4 +120,8 @@ Changelog for aNetHack:
 	* The Tsurugi of Muramasa now does double damage instead of +d8. This puts it in the running for the most powerful weapon in the game, which is where it should be. The fact that it is a two-handed weapon balances it somewhat.
 	* Grimtooth is now a (permanantly) poisoned weapon. This makes it somewhat useful in the early game (instead of worthless like it is now), but not so much in the late game, where most of the tougher monsters are poison resistant. 
 
-* gremlins can remove more intrinsics
+* Gremlins can remove more intrinsics
+
+* Pets can get satiated, and will not eat if satiated.  Intelligent pets will stockpile food
+
+* Pets can use projectiles

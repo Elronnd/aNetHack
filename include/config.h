@@ -326,6 +326,16 @@ typedef long glyph_t;
 #endif
 
 
+#define TAME_RANGED_ATTACKS /* tame monsters use ranged attacks */
+/*#define ATTACK_PETS */        /* monsters attack pets directly */  /* This doesn't seem to have any effect --Elronnd */
+/* #define TAME_SUMMONING */  /* tame spellcasters can summon tame monsters */
+                              /* (including you) */
+/*#define YOUMONST_SPELL*/      /* you can cast monster spells in the form
+                               of a monster */ /* Deffered because it conflicts with the monster spells patch --Elronnd */
+#define PET_SATIATION       /* pets can become satiated and choke;
+                               they can also hoard food if intelligent */
+
+
 /*
  * Section 4:  THE FUN STUFF!!!
  *
