@@ -386,8 +386,14 @@ xchar	rtype, rlit;
 	/* some other rooms may require lighting */
 
 	/* is light state random ? */
-	if (rlit == -1)
-	    rlit = (rnd(1+abs(depth(&u.uz))) < 11 && rn2(77)) ? TRUE : FALSE;
+	if (rlit == -1) {
+            /* The dungeon is darker when the moon is dim */
+            int phase = phase_of_the_moon();
+            phase = (phase > 4 ? 8 - phase : phase);
+            int prob = phase * 50 / 4 + 25;
+	    rlit = (rnd(1+abs(depth(&u.uz))) < (9 + phase)
+                   && rn2(prob)) ? TRUE : FALSE;
+        }
 
 	/*
 	 * Here we will try to create a room. If some parameters are
