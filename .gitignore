@@ -17,8 +17,11 @@ util/tilemap
 */*/*.orig
 
 .*.swp
+.*.swo
 */.*.swp
+*/.*.swo
 */*/.*.swp
+*/*/.*.swo
 
 */*.o
 */*/*.o
