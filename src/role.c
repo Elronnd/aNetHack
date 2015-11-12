@@ -34,7 +34,8 @@ const struct Role roles[] = {
 	{"Spelunker",   0},
 	{"Speleologist",0},
 	{"Collector",   0},
-	{"Curator",     0} },
+	{"Curator",     0},
+	{"Graverobber",	0} },
 	"Quetzalcoatl", "Camaxtli", "Huhetotl", /* Central American */
 	"Arc", "the College of Archeology", "the Tomb of the Toltec Kings",
 	PM_ARCHEOLOGIST, NON_PM, NON_PM,
@@ -60,7 +61,8 @@ const struct Role roles[] = {
 	{"Reaver",      0},
 	{"Slayer",      0},
 	{"Chieftain",   "Chieftainess"},
-	{"Conqueror",   "Conqueress"} },
+	{"Conqueror",   "Conqueress"},
+	{"Slave",	0} },
 	"Mitra", "Crom", "Set", /* Hyborian */
 	"Bar", "the Camp of the Duali Tribe", "the Duali Oasis",
 	PM_BARBARIAN, NON_PM, NON_PM,
@@ -86,7 +88,8 @@ const struct Role roles[] = {
 	{"Roamer",      0},
 	{"Nomad",       0},
 	{"Rover",       0},
-	{"Pioneer",     0} },
+	{"Pioneer",     0},
+	{"Eggsucker",	0} },
 	"Anu", "_Ishtar", "Anshar", /* Babylonian */
 	"Cav", "the Caves of the Ancestors", "the Dragon's Lair",
 	PM_CAVEMAN, PM_CAVEWOMAN, PM_LITTLE_DOG,
@@ -113,7 +116,8 @@ const struct Role roles[] = {
 	{"Crook",   0},
 	{"Desperado",     0},
 	{"Felon",    0},
-	{"Fugitive",  0} },
+	{"Fugitive",  0},
+	{"Recaptured", 0} },
 	"Ilmater", "Grumbar", "_Tymora",	/* Faerunian */
 	"Con", "Castle Waterdeep Dungeon", "the Warden's Level",
 	PM_CONVICT, NON_PM, PM_SEWER_RAT,
@@ -140,7 +144,8 @@ const struct Role roles[] = {
 	{"Herbalist",      0},
 	{"Magister",       "Magistra"},
 	{"Physician",      0},
-	{"Chirurgeon",     0} },
+	{"Chirurgeon",     0},
+	{"Quack",	   0} },
 	"_Athena", "Hermes", "Poseidon", /* Greek */
 	"Hea", "the Temple of Epidaurus", "the Temple of Coeus",
 	PM_HEALER, NON_PM, NON_PM,
@@ -165,7 +170,8 @@ const struct Role roles[] = {
 	{"Banneret",    0},
 	{"Chevalier",   "Chevaliere"},
 	{"Seignieur",   "Dame"},
-	{"Paladin",     0} },
+	{"Paladin",     0},
+	{"Knave",	0} },
 	"Lugh", "_Brigit", "Manannan Mac Lir", /* Celtic */
 	"Kni", "Camelot Castle", "the Isle of Glass",
 	PM_KNIGHT, NON_PM, PM_PONY,
@@ -190,7 +196,8 @@ const struct Role roles[] = {
 	{"Student of Metals", 0},
 	{"Student of Winds",  0},
 	{"Student of Fire",   0},
-	{"Master",            0} },
+	{"Master",            0},
+	{"Degenerate",	      0} },
 	"Shan Lai Ching", "Chih Sung-tzu", "Huan Ti", /* Chinese */
 	"Mon", "the Monastery of Chan-Sune",
 	  "the Monastery of the Earth-Lord",
@@ -217,7 +224,8 @@ const struct Role roles[] = {
 	{"Canon",       "Canoness"},
 	{"Lama",        0},
 	{"Patriarch",   "Matriarch"},
-	{"High Priest", "High Priestess"} },
+	{"High Priest", "High Priestess"},
+	{"Apostate",	0} },
 	0, 0, 0,	/* chosen randomly from among the other roles */
 	"Pri", "the Great Temple", "the Temple of Nalzok",
 	PM_PRIEST, PM_PRIESTESS, NON_PM,
@@ -245,7 +253,8 @@ const struct Role roles[] = {
 	{"Burglar",     0},
 	{"Filcher",     0},
 	{"Magsman",     "Magswoman"},
-	{"Thief",       0} },
+	{"Thief",       0},
+	{"Fink",	0} },
 	"Issek", "Mog", "Kos", /* Nehwon */
 	"Rog", "the Thieves' Guild Hall", "the Assassins' Guild Hall",
 	PM_ROGUE, NON_PM, NON_PM,
@@ -285,7 +294,8 @@ const struct Role roles[] = {
 	{"Arbalester",    0},	/* One skilled at crossbows */
 	{"Archer",        0},
 	{"Sharpshooter",  0},
-	{"Marksman",      "Markswoman"} },
+	{"Marksman",      "Markswoman"},
+	{"Bushwacker",    0} },
 	"Mercury", "_Venus", "Mars", /* Roman/planets */
 	"Ran", "Orion's camp", "the cave of the wumpus",
 	PM_RANGER, NON_PM, PM_LITTLE_DOG /* Orion & canis major */,
@@ -303,6 +313,7 @@ const struct Role roles[] = {
 	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4
 },
 {	{"Samurai", 0}, {
+#if 0
 	{"Hatamoto",    0},  /* Banner Knight */
 	{"Ronin",       0},  /* no allegiance */
 	{"Ninja",       "Kunoichi"},  /* secret society */
@@ -312,6 +323,17 @@ const struct Role roles[] = {
 	{"Daimyo",      0},  /* a samurai lord */
 	{"Kuge",        0},  /* Noble of the Court */
 	{"Shogun",      0} },/* supreme commander, warlord */
+#endif /*0*/
+	{"Ashigaru",	0},	/* footman */
+	{"Hatamoto",	0},	/* banner knight */
+	{"Kumigashira",	0},	/* squad leader */
+	{"Bangashira",	0},	/* leader of Kumigashira */
+	{"Samurai-Daisho",	0},	/* lieutenant */
+	{"Bushou",	0},	/* general */
+	{"Ryoshu",	0},	/* has a territory */
+	{"Joshu",	0},	/* heads a castle */
+	{"Kokushu",	0},	/* heads a province */
+	{"Ronin",       0} },
 	"_Amaterasu Omikami", "Raijin", "Susanowo", /* Japanese */
 	"Sam", "the Castle of the Taro Clan", "the Shogun's Castle",
 	PM_SAMURAI, NON_PM, PM_LITTLE_DOG,
@@ -337,7 +359,8 @@ const struct Role roles[] = {
 	{"Journeyer",   0},
 	{"Voyager",     0},
 	{"Explorer",    0},
-	{"Adventurer",  0} },
+	{"Adventurer",  0},
+	{"Homebody",    0} },
 	"Blind Io", "_The Lady", "Offler", /* Discworld */
 	"Tou", "Ankh-Morpork", "the Thieves' Guild Hall",
 	PM_TOURIST, NON_PM, NON_PM,
@@ -363,7 +386,8 @@ const struct Role roles[] = {
 	{"Swashbuckler",0},
 	{"Hero",        "Heroine"},
 	{"Champion",    0},
-	{"Lord",        "Lady"} },
+	{"Lord",        "Lady"},
+	{"Alto",	0} },
 	"Tyr", "Odin", "Loki", /* Norse */
 	"Val", "the Shrine of Destiny", "the cave of Surtur",
 	PM_VALKYRIE, NON_PM, NON_PM /*PM_WINTER_WOLF_CUB*/,
@@ -388,7 +412,8 @@ const struct Role roles[] = {
 	{"Sorcerer",    "Sorceress"},
 	{"Necromancer", 0},
 	{"Wizard",      0},
-	{"Mage",        0} },
+	{"Mage",        0},
+	{"Hedge Wizard",0} },
 	"Ptah", "Thoth", "Anhur", /* Egyptian */
 	"Wiz", "the Lonely Tower", "the Tower of Darkness",
 	PM_WIZARD, NON_PM, PM_KITTEN,
@@ -415,7 +440,7 @@ const struct Role roles[] = {
  */
 struct Role urole =
 {	{"Undefined", 0}, { {0, 0}, {0, 0}, {0, 0},
-	{0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0} },
+	{0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0} },
 	"L", "N", "C", "Xxx", "home", "locate",
 	NON_PM, NON_PM, NON_PM, NON_PM, NON_PM, NON_PM,
 	NON_PM, NON_PM, 0, 0, 0, 0,

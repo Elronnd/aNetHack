@@ -168,10 +168,13 @@ STATIC_DCL const char *NDECL(rank);
 #ifdef OVL1
 
 /* convert experience level (1..30) to rank index (0..8) */
+/* or rank index 9, if we've been expelled from the quest */
 int
 xlev_to_rank(xlev)
 int xlev;
 {
+  if (u.uevent.qexpelled) return 9;
+  else
 	return (xlev <= 2) ? 0 : (xlev <= 30) ? ((xlev + 2) / 4) : 8;
 }
 
