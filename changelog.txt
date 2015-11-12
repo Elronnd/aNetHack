@@ -126,9 +126,16 @@ Changelog for aNetHack:
 
 * Pets can use projectiles
 
-* The probability of a given room's being dark is dependent on the phase of
-the moon
+* The probability of a given room's being dark is dependent on the phase of the moon
 
 * Monsters can use bags
 
 * New wizard mode command, #give, to give an item to any monster
+
+* Applying a tin opener will automatically weild it
+
+* New rank titles if you are rejected from the quest.  New rank titles for samurai
+
+* Bear traps will wound your legs, a la xans
+
+* A wand of opening can release you from a bear trap
