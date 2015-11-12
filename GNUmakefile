@@ -43,8 +43,8 @@ install: all
 	$(call TOUCH_VAR,$(VARDIR)/livelog)
 	mkdir -p $(VARDIR)/save
 	$(CHOWN) $(GAMEUID):$(GAMEGID) $(VARDIR)/save
-#	cp sys/unix/anethack.sh $(PREFIX)/bin/anethack
-#	chmod 755 $(PREFIX)/bin/anethack
+	cp sys/unix/anethack.sh $(PREFIX)/bin/anethack
+	chmod 755 $(PREFIX)/bin/anethack
 
 ATOMIC_LN = ln $(1) $(2).new && mv $(2).new $(2)
 

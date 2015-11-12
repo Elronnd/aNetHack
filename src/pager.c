@@ -574,7 +574,7 @@ do_look(quick)
 		monexplain[i]) {
 		need_to_look = TRUE;
 		if (!found) {
-		    Sprintf(out_str, "%ld       %s", sym, an(monexplain[i]));
+		    Sprintf(out_str, "%c       %s", sym, an(monexplain[i]));
 		    firstmatch = monexplain[i];
 		    found++;
 		} else {
