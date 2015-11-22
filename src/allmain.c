@@ -174,6 +174,7 @@ moves++;
 /********************************/
 if (flags.bypasses) clear_bypasses();
 if(Glib) glibr();
+doautosave();
 nh_timeout();
 run_regions();
 if (u.ublesscnt) u.ublesscnt--;

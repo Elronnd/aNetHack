@@ -108,16 +108,27 @@ Changelog for aNetHack:
 * Make some artifacts, especially banes, more powerful:
 
 	* All banes warn you of targeted monsters (like Sting does for orcs).
+
 	* All banes give you +d8 to hit and +d20 to damage, rather than +d5 to hit and double damage. This makes them more useful without having to spend skill slots and enchant weapon scrolls.
+
 	* Dragonbane grants reflection.
+
 	* Demonbane prevents demons' gating ability (but not the magical power of summon nasties).
+
 	* On a critical hit, (a "natural 20"), Giantslayer will kill up to seven giants adjacent to you ("Seven at one blow!").
+
 	* Trollsbane gives hungerless regeneration.
+
 	* Trolls killed by Trollsbane will not revive.
+
 	* Sunsword has a 1 in 3 chance of blinding opponents.
+
 	* Sunsword has a light radius of 3 instead of 2. This gives players more of an incentive to wield it when they don't have a lamp.
+
 	* Vorpal Blade now does +d8 to damage, instead of the ridiculously low +1.
+
 	* The Tsurugi of Muramasa now does double damage instead of +d8. This puts it in the running for the most powerful weapon in the game, which is where it should be. The fact that it is a two-handed weapon balances it somewhat.
+
 	* Grimtooth is now a (permanantly) poisoned weapon. This makes it somewhat useful in the early game (instead of worthless like it is now), but not so much in the late game, where most of the tougher monsters are poison resistant. 
 
 * Gremlins can remove more intrinsics
@@ -139,3 +150,5 @@ Changelog for aNetHack:
 * Bear traps will wound your legs, a la xans
 
 * A wand of opening can release you from a bear trap
+
+* Automatically save the game every turn.  This is not yet implemented quite how I'd like, and it's most certainly buggy, but here it is.  It's beautiful.
