@@ -1049,8 +1049,15 @@ int thrown;
 		   && objects[obj->otyp].oc_material == IRON
 		   && mon->mhp > 1 && !thrown && !mon->mcan
 		   /* && !destroyed  -- guaranteed by mhp > 1 */ ) {
-		if (clone_mon(mon, 0, 0)) {
+	struct monst *mtmp2;
+		if (mtmp2 = clone_mon(mon, 0, 0)) {
 			pline("%s divides as you hit it!", Monnam(mon));
+	    mon->mhpmax >>= 1;
+	    if (mon->mhp > mon->mhpmax)
+		mon->mhp = mon->mhpmax;
+	    mtmp2->mhpmax >>= 1;
+	    if (mtmp2->mhp > mtmp2->mhpmax)
+		mtmp2->mhp = mtmp2->mhpmax;
 			hittxt = TRUE;
 		}
 	}

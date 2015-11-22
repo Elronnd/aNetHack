@@ -336,13 +336,20 @@ mattackm(magr, mdef)
 		       && otmp && objects[otmp->otyp].oc_material == IRON
 		       && mdef->mhp > 1 && !mdef->mcan)
 		    {
-			if (clone_mon(mdef, 0, 0)) {
+		struct monst *mtmp2;
+			if (mtmp2 = clone_mon(mdef, 0, 0)) {
 			    if (vis) {
 				char buf[BUFSZ];
 
 				Strcpy(buf, Monnam(mdef));
 				pline("%s divides as %s hits it!", buf, mon_nam(magr));
 			    }
+		    mdef->mhpmax >>= 1;
+		    if (mdef->mhp > mdef->mhpmax)
+			mdef->mhp = mdef->mhpmax;
+	 	    mtmp2->mhpmax >>= 1;
+		    if (mtmp2->mhp > mtmp2->mhpmax)
+			mtmp2->mhp = mtmp2->mhpmax;
 			}
 		    }
 		} else
