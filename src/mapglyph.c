@@ -83,7 +83,8 @@ get_objsym(glyph)
 int glyph;
 {
 	if (iflags.UTF8graphics &&
-	    objclass_unicode_codepoint[glyph]) {
+	    objclass_unicode_codepoint[glyph] &&
+	    objects[glyph].oc_name_known) {
 		/* only return a Unicode codepoint when there is one configured */
 		return objclass_unicode_codepoint[glyph];
 	} else {
