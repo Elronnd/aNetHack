@@ -1569,6 +1569,7 @@ const char *str;
        char object[BUFSZ];
        char codepoint[BUFSZ];
        int i, num=0;
+       boolean found=FALSE;
 
        if (!parse_extended_option(str, object, codepoint)) {
                return FALSE;
@@ -1587,17 +1588,17 @@ const char *str;
                         * descriptive name. */
                        if (!strcmpi(object, obj_descr[i].oc_descr)) {
                                objclass_unicode_codepoint[i] = num;
-                               return TRUE;
+                               found = TRUE;
                        }
                } else if (obj_descr[i].oc_name) {
                        /* items with only actual name like "carrot" */
                        if (!strcmpi(object, obj_descr[i].oc_name)) {
                                objclass_unicode_codepoint[i] = num;
-                               return TRUE;
+                               found = TRUE;
                        }
                }
        }
-       return FALSE;
+       return found;
 }
 
 
