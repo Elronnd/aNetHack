@@ -1008,6 +1008,8 @@ genericptr_t num;
 
 	if(levl[zx][zy].typ == SDOOR) {
 		cvt_sdoor_to_door(&levl[zx][zy]);	/* .typ = DOOR */
+		You("find a secret door!");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
 		newsym(zx, zy);
 		(*(int*)num)++;
@@ -1191,6 +1193,8 @@ register int aflag;
 		    if(levl[x][y].typ == SDOOR) {
 			if(rnl(7-fund)) continue;
 			cvt_sdoor_to_door(&levl[x][y]);	/* .typ = DOOR */
+			You("find a secret door!");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			exercise(A_WIS, TRUE);
 			nomul(0, NULL);
 			if (Blind && !aflag)
