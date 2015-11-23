@@ -86,37 +86,6 @@ dosave()
 	return 0;
 }
 
-/* Automatically save every turn */
-int
-doautosave()
-{
-	clear_nhwindow(WIN_MESSAGE);
-#if 0
-	if(yn("Really save?") == 'n') {
-		clear_nhwindow(WIN_MESSAGE);
-		if(multi > 0) nomul(0, NULL);
-	} else {
-		clear_nhwindow(WIN_MESSAGE);
-		pline("Saving...");
-#if defined(UNIX) || defined(VMS) || defined(__EMX__)
-		program_state.done_hup = 0;
-#endif
-#endif
-		if(dosave0()) {
-			program_state.something_worth_saving = 0;
-//			u.uhp = -1;		/* universal game's over indicator */
-			/* make sure they see the Saving message */
-			display_nhwindow(WIN_MESSAGE, TRUE);
-#if 0
-			exit_nhwindows("Be seeing you...");
-			terminate(EXIT_SUCCESS);
-#endif
-		} else (void)doredraw();
-//	}
-	return 0;
-}
-
-
 
 #if defined(UNIX) || defined(VMS) || defined (__EMX__) || defined(WIN32)
 /*ARGSUSED*/
