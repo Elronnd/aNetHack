@@ -1,0 +1,5 @@
+                                 ANETHACK README
+
+This is aNetHack, a variant of the NAO (nethack.alt.org) version of NetHack.  For more information on NAO, see "README.NAO".  For general information on NetHack, see README.343.  For a detailed list of all the changes between NAO NetHack and whatever the current version of aNetHack, see "Changelog.txt".
+
+aNetHack, as noted above, is a variant of the NAO version of NetHack.  Its purpose/philosophy/paradigm/whatever the hell you want to call it is as follows: "Be intresting, but not at the expense of being Slash'EM Extended."  There's not much more that can be said.  Much will be taken from various variants, including Slash'EM (which, despite what people have said, is still balanced, just harder than vanilla nethack).  For installation information, see "INSTALL".  If you have any bug reports, YANIs, questions, or just want to say something about the variant, say it at https://nethackwiki.com/wiki/User:Elronnd :)
