@@ -174,7 +174,10 @@ moveloop()
 					/********************************/
 					if (flags.bypasses) clear_bypasses();
 					if(Glib) glibr();
-					program_state.something_worth_saving = 0;
+
+					if (!dosave0()) {
+						impossible("unable to save");
+					}
 					nh_timeout();
 					run_regions();
 					if (u.ublesscnt) u.ublesscnt--;
